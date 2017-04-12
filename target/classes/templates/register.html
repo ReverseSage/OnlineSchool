@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
- <meta charset="ISO-8859-1">
-<link href="css/style.css" rel="stylesheet"/>
+ <meta charset="ISO-8859-1"></meta>
+<link href="CSS/style.css" rel="stylesheet"/>
 <title>onlineSchool.com</title>
 </head>
 	
@@ -11,10 +11,10 @@
 	<div class = "container">
 		<h1> Sign up </h1>
 		
-	  <form name = "register"  id = "register" method = "POST" action = "/login" >	
-	    <input type = "text"  value = "username" required = "required" name = "userName"  placeholder = "UserName"/> 
+	  <form name = "register"  id = "register" method = "POST" action = "/valid" >	
+	    <input type = "text"  value = "" required = "required" name = "userName"  placeholder = "UserName"/> 
 		 <br /><br /><br />
-	    <input  type = "email" value = "email"  required = "required" name = "email"  placeholder = "Email" /> 
+	    <input  type = "email" value = ""  required = "required" name = "email"  placeholder = "Email" /> 
 		<br /><br /><br />
 			
 	    <input  type = "password" value = "" required = "required" name = "password"  placeholder = "Password" minlength = "8"/> 
@@ -39,6 +39,5 @@
 	    <input type = "submit" value = "Register" name ="Sign up"/>
 	  </form>
 	  </div>				
-			
 </body>
 </html>

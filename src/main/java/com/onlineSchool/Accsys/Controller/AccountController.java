@@ -5,34 +5,36 @@ import java.util.HashMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-	
-	private String MainPage = "main";
+	private String MainPage  = "main" ;
 	private String Register = "register";
 	private String Login = "login";
-	private String Home = "";
+	private String Home = "StudentHome";
 	
 	HashMap<String, Account> RegisteredUsers = new HashMap<String, Account>();
 		Account account ;
 
 	@RequestMapping("/")
-	public ModelAndView mainPage(ModelAndView mav)
+	public String mainPage()
 	{
-		mav.setViewName(MainPage);
-		return mav;
+		return MainPage;
 	}
 	
-	@RequestMapping("/register")
-	public String Register(@RequestParam("username")String username,
+	@RequestMapping(value = "/register")
+	public String register(){
+		return Register;
+	}
+	
+	@RequestMapping(value  = "/valid")
+	public String validRegister(
 						 @RequestParam("email")String email,
 						 @RequestParam("password")String password,
 						 @RequestParam("date")String birthday,
 						 @RequestParam("Gender")String gender,
 						 @RequestParam("Academic Mail")String AcademicMail){
-		
+		String username = ".";
 		if(AcademicMail.length() == 0)
 			account = new Student(username,email,password,birthday,gender);
 		else
@@ -40,24 +42,36 @@ public class AccountController {
 		
 		String response = "" ;
 		if(RegisteredUsers.containsKey(account.getEmail())){
-			response = Register;
+			response = "redirect:/register";
 		}
 		else{
 			RegisteredUsers.put(account.getEmail(), account);
-			response = Login;
+			response = "redirect:/login";
 		}
 		return response ;
 	}
 	
-	@RequestMapping("/login")
-	public String Login(@RequestParam("email")String email,
+	@RequestMapping(value = "/login")
+	public String login(){
+		return Login;
+	}
+	
+	@RequestMapping( value = "/valid2" )
+	public String validLogin(@RequestParam("email")String email,
 					@RequestParam("password")String password){
 	
 	String response = "" ;
-	if(RegisteredUsers.containsKey(email) && RegisteredUsers.get(email).equals(password))
+	if(RegisteredUsers.get(email).getPassword().equals(password))
 			response =  Home;
 	else response = Login;
 	
 	return response;
 	}
+	
+	@RequestMapping("/StudentHome")
+	public String StudentHome(){
+		return Home;
+	}
+	
+	
 }

@@ -1,37 +1,26 @@
 <!DOCTYPE html>
-<html ng-app="onlineSchool" ng-controller="LoginCtrl">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-	
-<link href="css/style.css" rel="stylesheet">
-<script src="angular.min.js"></script>	
-	
+<meta charset="ISO-8859-1"></meta>
+<link href="css/style.css" rel="stylesheet"/>	
 <title>onlineSchool.com</title>
 </head>
+
 	<body>
 	<div class = "container" id = "container1">
 		<h1> Sign in </h1>
 		
-	  <form name = "login" action = "/home" method = "POST" >
+	  <form name = "login" action = "/valid2" method = "POST" >
 		  
-		   <input  type = "email" value = ""  required ng-model= "email" placeholder = "Email@example.com" > 
+		   <input  type = "email" value = ""  required = "required" name= "email" placeholder = "Email" /> 
 		<br /><br /><br />
 			
-	    <input  type = "password" value = "" required ng-model = "password" placeholder = "Password" minlength = "8"> 
+	    <input  type = "password" value = "" required = "required" name = "password" placeholder = "Password" minlength = "8"/> 
 		  <br /><br /><br />
-		<input  id = "signin" type = "submit" value = "Sign in "  name ="sign in">
+		<input  id = "signin" type = "submit" value = "Sign in "  name ="sign in"/>
 		  
 	  </form>
 	</div>	
-	
-<script>
-  var myApp = angular.module("onlineSchool", []);
-  myApp.controller("LoginCtrl", function ($scope) {
-    
-});
-	
-</script>		
 	
 </body>
 </html>
