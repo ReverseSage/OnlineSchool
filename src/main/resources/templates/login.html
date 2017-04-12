@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="onlineSchool" ng-controller="LoginCtrl">
+
+<head>
+<meta charset="UTF-8">
+	
+<link href="css/style.css" rel="stylesheet">
+<script src="angular.min.js"></script>	
+	
+<title>onlineSchool.com</title>
+</head>
+	<body>
+	<div class = "container" id = "container1">
+		<h1> Sign in </h1>
+		
+	  <form name = "login" action = "/home" method = "POST" >
+		  
+		   <input  type = "email" value = ""  required ng-model= "email" placeholder = "Email@example.com" > 
+		<br /><br /><br />
+			
+	    <input  type = "password" value = "" required ng-model = "password" placeholder = "Password" minlength = "8"> 
+		  <br /><br /><br />
+		<input  id = "signin" type = "submit" value = "Sign in "  name ="sign in">
+		  
+	  </form>
+	</div>	
+	
+<script>
+  var myApp = angular.module("onlineSchool", []);
+  myApp.controller("LoginCtrl", function ($scope) {
+    
+});
+	
+</script>		
+	
+</body>
+</html>
+	

@@ -1,0 +1,73 @@
+@media (min-width:900px){
+body{
+ background-image: url("book.jpg");	
+}
+	
+h2{
+   font-size: 36px;
+   font-style: italic;	
+   font-family: "Tangerine", snapper;
+   text-align: center;	
+}
+	
+/* for sign up form */	
+.container{
+  text-align: center;
+  margin-top: 100px;
+  background-color: #ebebeb;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 500px;
+  height: 850px;	
+  margin-left: 400px;
+  border: 1px solid black;	
+}
+	
+/* for login form */	
+#container1{
+  height: 350px;	
+}
+	
+input[type = submit]{
+  height:50px;
+  width:130px;	
+  font-size: 20px;
+  background-color: #3a57af;
+  color: white;
+  border:none;
+  margin-left: -150px;	
+  
+}
+	
+#signin{
+	 margin-left:0px;
+	}
+
+#Gender,#Type{
+  height:40px;
+  width:80px;	
+  font-size: 16px;	
+  text-align: center;
+}
+	
+input{
+   height:40px;
+   width:350px;
+   font-size : 20px;
+   text-align: center;
+   border-left:8px solid #3a57af;	
+ }
+	
+button{	
+	height:50px;
+    width:130px;	
+    font-size: 20px;
+    background-color: #3a57af;
+    border:none;
+ }
+	
+a{
+	color: white;
+}
+	
+}
