@@ -1,4 +1,4 @@
-package com.onlineSchool.Accsys.Controller;
+package com.onlineSchool.AccountSubsystem;
 
 public class StudentController extends AccountController {
 	

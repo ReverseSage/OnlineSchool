@@ -1,4 +1,4 @@
-package com.onlineSchool.Accsys.Controller;
+package com.onlineSchool.AccountSubsystem;
 
 import java.util.HashMap;
 
@@ -28,13 +28,12 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value  = "/valid")
-	public String validRegister(
+	public String validRegister(@RequestParam("userName")String username,
 						 @RequestParam("email")String email,
 						 @RequestParam("password")String password,
 						 @RequestParam("date")String birthday,
 						 @RequestParam("Gender")String gender,
 						 @RequestParam("Academic Mail")String AcademicMail){
-		String username = ".";
 		if(AcademicMail.length() == 0)
 			account = new Student(username,email,password,birthday,gender);
 		else

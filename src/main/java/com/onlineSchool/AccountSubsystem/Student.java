@@ -1,4 +1,4 @@
-package com.onlineSchool.Accsys.Controller;
+package com.onlineSchool.AccountSubsystem;
 
 public class Student extends Account {
 	public Student(String username,String email,String password,String birthday,String gender){
