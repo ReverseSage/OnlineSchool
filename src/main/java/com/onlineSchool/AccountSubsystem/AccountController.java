@@ -44,6 +44,7 @@ public class AccountController {
 		
 		if(RegisteredUsers.containsKey(account.getEmail())){
 			mav.addObject("exist","This Email already exists please try again !");
+			mav.setViewName(register);
 		}
 		else{
 			RegisteredUsers.put(account.getEmail(), account);
@@ -52,18 +53,28 @@ public class AccountController {
 		return mav ;
 	}
 	
+	
+	
 	@RequestMapping(value = "/login")
 	public ModelAndView login(ModelAndView mav){
 		mav.setViewName(login);
 		return mav;
 	}
 	
+	
+	
 	@RequestMapping( value = "/valid2" )
 	public ModelAndView validLogin(@RequestParam("email")String email,
 								   @RequestParam("password")String password,
 									ModelAndView mav){
 		
-	if(RegisteredUsers.get(email).getPassword().equals(password))
+		if(!RegisteredUsers.containsKey(email)){
+			mav.setViewName(login);
+			mav.addObject("wrongpassword", "The Email you entered doesn't exist");
+			return mav;
+		}
+		
+	if(RegisteredUsers.get(email).getPassword().equals(password) )
 			mav.setViewName(test); //send to home
 	else{
 		mav.setViewName(login);

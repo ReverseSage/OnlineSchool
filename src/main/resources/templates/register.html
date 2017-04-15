@@ -16,6 +16,8 @@
 	    <input type = "text"  value = "" required = "required" name = "userName" th:value="${account.username}"  placeholder = "UserName"/> 
 		 <br /><br /><br />
 	    <input  type = "email" value = ""  required = "required" name = "email" th:value="${account.email}" placeholder = "Email" /> 
+	    <br />
+	    <p class = "error" th:if="${exist}" th:inline="text"> [[${exist}]] </p>
 		<br /><br /><br />
 			
 	    <input  type = "password" value = "" required = "required" name = "password" th:value="${account.password}" placeholder = "Password" minlength = "8"/> 

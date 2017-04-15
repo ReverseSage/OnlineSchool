@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1"></meta>
-<link href="css/style.css" rel="stylesheet"/>	
+<link href="CSS/style.css" rel="stylesheet"/> 
 <title>onlineSchool.com</title>
 </head>
 
@@ -15,8 +15,10 @@
 		   <input  type = "email" value = ""  required = "required" name= "email" placeholder = "Email" /> 
 		<br /><br /><br />
 			
-	    <input  type = "password" value = "" required = "required" name = "password" placeholder = "Password" minlength = "8"/> 
-		  <br /><br /><br />
+	    <input  type = "password" value = "" required = "required" name = "password" placeholder = "Password"/> 
+	    <br />
+	    <p class = "error" th:if="${wrongpassword}" th:inline="text"> [[${wrongpassword}]]</p>
+		  <br /><br />
 		<input  id = "signin" type = "submit" value = "Sign in "  name ="sign in"/>
 		  
 	  </form>

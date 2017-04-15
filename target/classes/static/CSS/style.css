@@ -18,14 +18,26 @@ h2{
   padding-top: 5px;
   padding-bottom: 10px;
   width: 500px;
-  height: 850px;	
+  height: 700px;	
   margin-left: 400px;
   border: 1px solid black;	
 }
+/* for home page */
+.home{
+  text-align: center;
+  margin-top: 100px;
+  background-color: #ebebeb;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 500px;
+  height: 400px;	
+  margin-left: 400px;
+  border: 1px solid black;	
+	}
 	
 /* for login form */	
 #container1{
-  height: 350px;	
+  height: 360px;	
 }
 	
 input[type = submit]{
@@ -35,7 +47,8 @@ input[type = submit]{
   background-color: #3a57af;
   color: white;
   border:none;
-  margin-left: -150px;	
+  margin-left: -150px;
+  posistion: fixed;	
   
 }
 	
@@ -68,6 +81,13 @@ button{
 	
 a{
 	color: white;
+}
+
+.error
+{
+ font-size :15px; 
+ color: red;	
+}
 }
 	
 }
