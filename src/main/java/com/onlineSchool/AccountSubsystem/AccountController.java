@@ -3,74 +3,77 @@ package com.onlineSchool.AccountSubsystem;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-	private String MainPage  = "main" ;
-	private String Register = "register";
-	private String Login = "login";
-	private String Home = "StudentHome";
-	
-	HashMap<String, Account> RegisteredUsers = new HashMap<String, Account>();
+	private String mainpage  = "main" ;
+	private String register = "register";
+	private String login = "login";
+	private String home = "StudentHome";
+	private String test = "index";
+	private HashMap<String, Account> RegisteredUsers = new HashMap<String, Account>();
 		Account account ;
 
 	@RequestMapping("/")
 	public String mainPage()
 	{
-		return MainPage;
+		return mainpage;
 	}
 	
 	@RequestMapping(value = "/register")
-	public String register(){
-		return Register;
+	public ModelAndView register(ModelAndView mav){
+		mav.setViewName(register);
+		mav.addObject("account",new Account());
+		return mav;
 	}
 	
 	@RequestMapping(value  = "/valid")
-	public String validRegister(@RequestParam("userName")String username,
-						 @RequestParam("email")String email,
-						 @RequestParam("password")String password,
-						 @RequestParam("date")String birthday,
-						 @RequestParam("Gender")String gender,
-						 @RequestParam("Academic Mail")String AcademicMail){
-		if(AcademicMail.length() == 0)
-			account = new Student(username,email,password,birthday,gender);
+	public ModelAndView validRegister(@ModelAttribute("account")Account account,
+								@RequestParam("type")String type,
+								@RequestParam("Academic Mail")String academicmail,
+								ModelAndView mav){
+		if(type.equals("student"))
+			account = new Student(account);
 		else
-			account = new Teacher(username,email,password,birthday,gender,AcademicMail);
+			account = new Teacher(account,academicmail);
 		
-		String response = "" ;
+		
 		if(RegisteredUsers.containsKey(account.getEmail())){
-			response = "redirect:/register";
+			mav.addObject("exist","This Email already exists please try again !");
 		}
 		else{
 			RegisteredUsers.put(account.getEmail(), account);
-			response = "redirect:/login";
+			mav.setViewName(login);
 		}
-		return response ;
+		return mav ;
 	}
 	
 	@RequestMapping(value = "/login")
-	public String login(){
-		return Login;
+	public ModelAndView login(ModelAndView mav){
+		mav.setViewName(login);
+		return mav;
 	}
 	
 	@RequestMapping( value = "/valid2" )
-	public String validLogin(@RequestParam("email")String email,
-					@RequestParam("password")String password){
-	
-	String response = "" ;
+	public ModelAndView validLogin(@RequestParam("email")String email,
+								   @RequestParam("password")String password,
+									ModelAndView mav){
+		
 	if(RegisteredUsers.get(email).getPassword().equals(password))
-			response =  Home;
-	else response = Login;
-	
-	return response;
+			mav.setViewName(test); //send to home
+	else{
+		mav.setViewName(login);
+		mav.addObject("wrongpassword", "The password you entered doesn't match");
 	}
 	
-	@RequestMapping("/StudentHome")
-	public String StudentHome(){
-		return Home;
+	return mav;
 	}
+	
+	
 	
 	
 }

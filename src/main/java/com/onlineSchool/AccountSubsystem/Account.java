@@ -1,11 +1,11 @@
 package com.onlineSchool.AccountSubsystem;
 
 public class Account {
-	protected String username;
-	protected String email;
-	protected String password;
-	protected String birthday;
-	protected String gender;
+	 String username;
+	 String email;
+	 String password;
+	 String birthday;
+	 String gender;
 	
 	
 	public Account() {

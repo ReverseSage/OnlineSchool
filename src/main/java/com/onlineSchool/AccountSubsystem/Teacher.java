@@ -1,29 +1,29 @@
 package com.onlineSchool.AccountSubsystem;
 
 public class Teacher extends Account {
-	private String 	academicMail;
+	private String 	academicmail;
 	
 	public Teacher() {
 		
 	}
 	
-	public Teacher(String username,String email,String password,String birthday,String gender,String AcademicMail) {
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.birthday = birthday;
-		this.gender = gender;
-		this.academicMail = AcademicMail;
+	public Teacher(Account account,String academicmail) {
+		this.username = account.getUsername();
+		this.email = account.getEmail();
+		this.password = account.getPassword();
+		this.birthday = account.getBirthday();
+		this.gender = account.getGender();
+		this.academicmail = academicmail;
 	}
 	
 	
 
 	public String getAcademicMail() {
-		return academicMail;
+		return academicmail;
 	}
 
 	public void setAcademicMail(String academicMail) {
-		this.academicMail = academicMail;
+		this.academicmail = academicMail;
 	}
 	
 	

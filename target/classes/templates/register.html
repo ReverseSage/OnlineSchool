@@ -11,33 +11,35 @@
 	<div class = "container">
 		<h1> Sign up </h1>
 		
-	  <form name = "register"  id = "register" method = "POST" action = "/valid" >	
-	    <input type = "text"  value = "" required = "required" name = "userName"  placeholder = "UserName"/> 
+	  <form name = "register"  id = "register" method = "POST" action = "/valid" >
+	  	
+	    <input type = "text"  value = "" required = "required" name = "userName" th:value="${account.username}"  placeholder = "UserName"/> 
 		 <br /><br /><br />
-	    <input  type = "email" value = ""  required = "required" name = "email"  placeholder = "Email" /> 
+	    <input  type = "email" value = ""  required = "required" name = "email" th:value="${account.email}" placeholder = "Email" /> 
 		<br /><br /><br />
 			
-	    <input  type = "password" value = "" required = "required" name = "password"  placeholder = "Password" minlength = "8"/> 
+	    <input  type = "password" value = "" required = "required" name = "password" th:value="${account.password}" placeholder = "Password" minlength = "8"/> 
 		  <br /><br /><br />
-	    <input type="date" required = "required" name ="date" value="date" />
+	    <input type="date" required = "required" name ="date" th:value="${account.birthday}" value="date" />
 	    <br /><br /><br />
 			
-		<select required = "required" id ="Gender" name = "Gender" >
+		<select required = "required" id ="Gender" name = "Gender" th:value="${account.gender}">
         <option value="male" >Male</option>
         <option value="female">Female</option>
         </select>&nbsp;&nbsp;
 			
-	    <select required = "required" id = "Type"  name = "type">
-        <option value="teacher" id = "teacher"> Teacher </option>
+	    <select required = "required" id = "Type"  name = "type" >
+        <option value="teacher" id = "teacher" onclick = "show()"> Teacher </option>
         <option value="student" id = "student">Student</option>
        </select>  
 	    <br /><br /><br />
-	   Academic Mail(*teachers):
+	    Academic Mail(*teachers):
 		<br /><br />
-	  <input type="email" name="Academic Mail" />
+	    <input type="email" name="Academic Mail" />
 	    <br /><br />
+	  
 	    <input type = "submit" value = "Register" name ="Sign up"/>
 	  </form>
-	  </div>				
+	  </div>			
 </body>
 </html>
