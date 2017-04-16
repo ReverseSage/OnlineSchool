@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-   <title></title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1"></meta>
+   <title>online School</title>
 
-    <link href="css/bootstrap.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
-	 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+   <!--  <link href="css/bootstrap.css" rel="stylesheet"> -->
+	<link href="CSS/styles.css" rel="stylesheet"> 
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"> 
+	 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"/>
      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 	  
   </head>
@@ -20,13 +22,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" ><p th:if="${user.username}" th:inline="text"> [[${user.username}]]  </p> </a>
+            <a class="navbar-brand" href="#" ><p style ="color:gray;" th:if="${user.username}" th:inline="text"> [[${user.username}]]  </p> </a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active" id = "home" ><a href="home.html">Home</a></li>
+              <li  id = "home" ><a href="#">Home</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id = "contact">Contact<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded="false" id = "contact">Contact<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Emails</a></li>
                 </ul>
@@ -39,17 +41,43 @@
           </div>
         </div>
       </nav>
-
 	  
-	  
-<script>
-    var myApp = angular.module("onlineSchool", []);
-    myApp.controller("LoginCtrl", function ($scope) {
-    
-});
-	
-</script>		
+	<div class = "row">
+		<div th:each ="course : ${courses}">
+		<div class = "col-md-4 col-ms-12">
+			<div class = "box">
+			<a href="/${course.Name}">
+				<img class ="crop-img" th:src="${course.src}">
+				<p th:inline = "text" > [[${course.Name}]] </p></a>
+			</div></div><div style = "border-top: 2px solid white;"></div>
+		</div>	
+	<!--	<div class = "col-md-4 col-ms-12">
+			<div class = "box">
+			<a href="#">
+				<img class ="crop-img" src="book.jpg">
+			  <p > math </p></a>
+			</div></div><div style = "border-top: 2px solid white;"></div>
+		<div class = "col-md-4 col-ms-12">
+			<div class = "box">
+			<a href="#">
+			    <img class ="crop-img" src="book.jpg">
+			<p > Programming </p></a>
+			</div></div><div style = "border-top: 2px solid white;"></div>
+		<div class = "col-md-4 col-ms-12">
+			<div class = "box">
+			<a href="#">
+			    <img class ="crop-img" src="book.jpg">
+			<p > Language </p></a>
+			</div></div><div style = "border-top: 2px solid white;"></div>
 
+		-->	
+	<!-- <tr th:each="course : ${courses}">
+	 <td th:text="${course.Name}"></td>
+     <img  th:src="${course.src}}" alt=""/> 
+   </tr> -->
+			</div>
+		
+	 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
