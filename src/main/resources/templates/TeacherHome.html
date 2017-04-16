@@ -26,7 +26,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li  id = "home" ><a href="#">Home</a></li>
+              <li><a href="#">Home</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded="false" id = "contact">Contact<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -44,23 +44,23 @@
       </nav>
 	 <nav class="navbar navbar-default"> 
         <div id="navbar" class="navbar-collapse collapse">
-       <!--     <ul class="nav navbar-nav">
-              <li  id = "home" ><a href="/createCourse">Create Course</a></li>
-              <li  id = "home" ><a href="/createGame">Create Game</a></li>
-			</ul>-->
+          <ul class="nav navbar-nav">
+              <li  id = "home" ><a href="/createCourse" style= "color: white;">Create Course</a></li>
+              <li  id = "home" ><a href="/createGame" style= "color: white;">Create Game</a></li>
+			</ul>
 	      <div class="navbar-form navbar-right">
             <input id="searchbox" type="text" class="form-control" placeholder="Search...">
            </div>
 		 </div> 	
 	  </nav>
 	 
-  <div class= "features">
+ <!-- <div class= "features">
 	   <button> <a href = "/createCourse" style= "color: white;"> create Course </a> </button>
 	  <br /><br /> <br />
 	   <button> <a href = "/createCourse" style= "color: white;"> Create Game </a> </button>
-	 </div> 
+	 </div> --->
 	<div class = "row">
-	  <div th:each ="course : ${courses}">
+      <div th:each ="course : ${courses}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
 			<a href="@{/course.Name}">
@@ -69,7 +69,7 @@
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>
 		
-	<!--	<div class = "col-md-5 col-ms-12">
+	<!-- <div class = "col-md-5 col-ms-12">
 			<div class = "box">
 			<a href="#">
 				<img class ="crop-img" src="book.jpg">
@@ -92,8 +92,8 @@
 			<a href="#">
 			    <img class ="crop-img" src="book.jpg">
 			<p > Language </p></a>
-			</div></div><div style = "border-top: 2px solid white;"></div> -->
-	  
+			</div></div><div style = "border-top: 2px solid white;"></div>
+	         -->
 		</div>	
 		
     <script src="js/jquery.min.js"></script>
@@ -103,3 +103,4 @@
   
   </body>
 </html>
+
