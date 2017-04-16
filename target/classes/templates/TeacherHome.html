@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1"></meta>
-   <title>online School</title>
+
+<meta charset="ISO-8859-1"></meta>
+	<title>online School</title>
 
    <!--  <link href="css/bootstrap.css" rel="stylesheet"> -->
 	<link href="CSS/styles.css" rel="stylesheet"/> 
@@ -14,7 +15,7 @@
   </head>
   <body>
 
-        <nav class="navbar navbar-default">
+       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -27,7 +28,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li  id = "home" ><a href="#">Home</a></li>
+              <li><a href="#">Home</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded="false" id = "contact">Contact<span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -43,54 +44,62 @@
           </div>
         </div>
       </nav>
-      <nav class="navbar navbar-default">   
-	 <div class="navbar-form navbar-right">
-		 
-      <input id="searchbox" type="text" class="form-control" placeholder="Search..."/>
-
-         </div>
-      </nav>
+	 <nav class="navbar navbar-default"> 
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li  id = "home" ><a href="/createCourse" style= "color: white;">Create Course</a></li>
+              <li  id = "home" ><a href="/createGame" style= "color: white;">Create Game</a></li>
+			</ul>
+	      <div class="navbar-form navbar-right">
+            <input id="searchbox" type="text" class="form-control" placeholder="Search...">
+           </div>
+		 </div> 	
+	  </nav>
 	 
-	  
+ <!-- <div class= "features">
+	   <button> <a href = "/createCourse" style= "color: white;"> create Course </a> </button>
+	  <br /><br /> <br />
+	   <button> <a href = "/createCourse" style= "color: white;"> Create Game </a> </button>
+	 </div> --->
 	<div class = "row">
-		<div th:each ="course : ${courses}">
+      <div th:each ="course : ${courses}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
-			<a href="/${course.Name}">
-				
-				<img class ="crop-img" th:src="${course.src}"/>
-				 <p th:if="${course.Name}" th:inline = "text" > [[${course.Name}]] </p>
-			</a>
+			<a href="@{/course.Name}">
 
+				<img class ="crop-img" th:src="${course.src}"/>
+
+				<p th:inline = "text" > [[${course.Name}]] </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
-		</div>	
-	<!--	<div class = "col-md-4 col-ms-12">
+		</div>
+		
+	<!-- <div class = "col-md-5 col-ms-12">
+			<div class = "box">
+			<a href="#">
+				<img class ="crop-img" src="book.jpg">
+			  <p > Science </p></a>
+		</div></div><div style = "border-top: 2px solid white;"></div>		
+        <div class = "col-md-5 col-ms-12">
 			<div class = "box">
 			<a href="#">
 				<img class ="crop-img" src="book.jpg">
 			  <p > math </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
-		<div class = "col-md-4 col-ms-12">
+		<div class = "col-md-5 col-ms-12">
 			<div class = "box">
 			<a href="#">
 			    <img class ="crop-img" src="book.jpg">
 			<p > Programming </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
-		<div class = "col-md-4 col-ms-12">
+		<div class = "col-md-5 col-ms-12">
 			<div class = "box">
 			<a href="#">
 			    <img class ="crop-img" src="book.jpg">
 			<p > Language </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
-
-		-->	
-	<!-- <tr th:each="course : ${courses}">
-	 <td th:text="${course.Name}"></td>
-     <img  th:src="${course.src}}" alt=""/> 
-   </tr> -->
-			</div>
+	         -->
+		</div>	
 		
-	 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
@@ -98,3 +107,4 @@
   
   </body>
 </html>
+

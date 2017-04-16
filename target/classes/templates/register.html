@@ -13,7 +13,7 @@
 		
 	  <form name = "register"  id = "register" method = "POST" action = "/valid" >
 	  	
-	    <input type = "text"  value = "" required = "required" name = "userName" th:value="${account.username}"  placeholder = "UserName"/> 
+	    <input type = "text"  value = "" required = "required" name = "username" th:value="${account.username}"  placeholder = "UserName"/> 
 		 <br /><br /><br />
 	    <input  type = "email" value = ""  required = "required" name = "email" th:value="${account.email}" placeholder = "Email" /> 
 	    <br />
@@ -22,7 +22,7 @@
 			
 	    <input  type = "password" value = "" required = "required" name = "password" th:value="${account.password}" placeholder = "Password" minlength = "8"/> 
 		  <br /><br /><br />
-	    <input type="date" required = "required" name ="date" th:value="${account.birthday}" value="date" />
+	    <input type="date" required = "required" name ="birthday" th:value="${account.birthday}" value="date" />
 	    <br /><br /><br />
 			
 		<select required = "required" id ="Gender" name = "Gender" th:value="${account.gender}">
@@ -45,3 +45,4 @@
 	  </div>			
 </body>
 </html>
+
