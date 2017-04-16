@@ -1,7 +1,6 @@
 package com.onlineSchool.AccountSubsystem;
 
-import java.util.HashMap;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +13,8 @@ public class AccountController {
 	private String register = "register";
 	private String login = "login";
 	private String home = "StudentHome";
-	private String test = "index";
-	private HashMap<String, Account> RegisteredUsers = new HashMap<String, Account>();
-		Account account ;
+	@Autowired
+	private AccountRepository accountRepository;
 
 	@RequestMapping("/")
 	public String mainPage()
@@ -31,60 +29,58 @@ public class AccountController {
 		return mav;
 	}
 	
-	@RequestMapping(value  = "/valid")
-	public ModelAndView validRegister(@ModelAttribute("account")Account account,
-								@RequestParam("type")String type,
-								@RequestParam("Academic Mail")String academicmail,
-								ModelAndView mav){
-		if(type.equals("student"))
+	@RequestMapping(value = "/valid")
+	public ModelAndView validRegister(@ModelAttribute("account") Account account, 
+			                          @RequestParam("type") String type,
+			                          @RequestParam("Academic Mail") String academicMail, 
+			                          ModelAndView mav) {
+		if (type.equals("student")) {
 			account = new Student(account);
-		else
-			account = new Teacher(account,academicmail);
-		
-		
-		if(RegisteredUsers.containsKey(account.getEmail())){
-			mav.addObject("exist","This Email already exists please try again !");
-			mav.setViewName(register);
+		} else {
+			account = new Teacher(account, academicMail);
 		}
-		else{
-			RegisteredUsers.put(account.getEmail(), account);
+
+		if (accountRepository.exists(account.getEmail())) {
+			mav.addObject("exist", "This Email already exists please try again !");
+			mav.setViewName(register);
+		} else {
+			accountRepository.save(account);
 			mav.setViewName(login);
 		}
-		return mav ;
+		return mav;
 	}
 	
 	
-	
 	@RequestMapping(value = "/login")
-	public ModelAndView login(ModelAndView mav){
+	public ModelAndView login(ModelAndView mav) {
 		mav.setViewName(login);
 		return mav;
 	}
 	
 	
 	
-	@RequestMapping( value = "/valid2" )
-	public ModelAndView validLogin(@RequestParam("email")String email,
-								   @RequestParam("password")String password,
-									ModelAndView mav){
-		
-		if(!RegisteredUsers.containsKey(email)){
+	@RequestMapping(value = "/valid2")
+	public ModelAndView validLogin(@RequestParam("email") String email, 
+								   @RequestParam("password") String password,
+			                       ModelAndView mav) {
+
+		Account account;
+		if (accountRepository.exists(email)) {
+			account = accountRepository.findOne(email);
+		} else {
 			mav.setViewName(login);
 			mav.addObject("wrongpassword", "The Email you entered doesn't exist");
 			return mav;
 		}
-		
-	if(RegisteredUsers.get(email).getPassword().equals(password) )
-			mav.setViewName(home); //send to home
-	else{
-		mav.setViewName(login);
-		mav.addObject("wrongpassword", "The password you entered doesn't match");
+
+		if (account.getPassword().equals(password)) {
+			mav.setViewName(home);
+		} else {
+			mav.setViewName(login);
+			mav.addObject("wrongpassword", "The password you entered doesn't match");
+		}
+
+		return mav;
 	}
-	
-	return mav;
-	}
-	
-	
-	
 	
 }
