@@ -42,3 +42,10 @@ button{
 	margin-top:30px;
 	margin-right: 50px;	
 }
+#home{
+  background-color: #3a57af;
+}
+li:hover
+{
+	font-size: 15px;
+}
