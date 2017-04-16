@@ -19,11 +19,11 @@ public class Teacher extends Account {
 	}
 
 	public Teacher(Account account, String academicmail) {
-		this.username = account.getUsername();
-		this.email = account.getEmail();
-		this.password = account.getPassword();
-		this.birthday = account.getBirthday();
-		this.gender = account.getGender();
+		this.setUsername(account.getUsername());
+		this.setEmail(account.getEmail());
+		this.setPassword(account.getPassword());
+		this.setBirthday(account.getBirthday());
+		this.setGender(account.getGender());
 		this.academicmail = academicmail;
 	}
 

@@ -5,12 +5,12 @@ import javax.persistence.Id;
 
 @Entity
 public class Account {
-	String username;
+	private String username;
 	@Id
-	String email;
-	String password;
-	String birthday;
-	String gender;
+	private String email;
+	private String password;
+	private String birthday;
+	private String gender;
 
 	public Account() {
 
