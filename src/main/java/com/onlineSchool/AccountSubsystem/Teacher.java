@@ -1,13 +1,16 @@
 package com.onlineSchool.AccountSubsystem;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Teacher extends Account {
-	private String 	academicmail;
-	
+	private String academicmail;
+
 	public Teacher() {
-		
+
 	}
-	
-	public Teacher(Account account,String academicmail) {
+
+	public Teacher(Account account, String academicmail) {
 		this.username = account.getUsername();
 		this.email = account.getEmail();
 		this.password = account.getPassword();
@@ -15,8 +18,6 @@ public class Teacher extends Account {
 		this.gender = account.getGender();
 		this.academicmail = academicmail;
 	}
-	
-	
 
 	public String getAcademicMail() {
 		return academicmail;
@@ -25,9 +26,5 @@ public class Teacher extends Account {
 	public void setAcademicMail(String academicMail) {
 		this.academicmail = academicMail;
 	}
-	
-	
-	
-	
-	
+
 }

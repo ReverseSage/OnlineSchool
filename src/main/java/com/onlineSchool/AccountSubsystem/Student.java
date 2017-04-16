@@ -1,5 +1,8 @@
 package com.onlineSchool.AccountSubsystem;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Student extends Account {
 	
 	public Student(){

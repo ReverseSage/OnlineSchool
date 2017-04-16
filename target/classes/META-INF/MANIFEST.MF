@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: phas2_sw
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ryuk
+Built-By: m
 Implementation-Vendor-Id: com.a3
 Build-Jdk: 1.8.0_121
 Implementation-URL: http://projects.spring.io/spring-boot/phas2_sw/
