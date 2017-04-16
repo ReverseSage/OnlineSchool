@@ -75,7 +75,7 @@ public class AccountController {
 		}
 		
 	if(RegisteredUsers.get(email).getPassword().equals(password) )
-			mav.setViewName(test); //send to home
+			mav.setViewName(home); //send to home
 	else{
 		mav.setViewName(login);
 		mav.addObject("wrongpassword", "The password you entered doesn't match");
