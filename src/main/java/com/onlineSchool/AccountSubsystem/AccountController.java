@@ -12,7 +12,9 @@ public class AccountController {
 	private String mainpage  = "main" ;
 	private String register = "register";
 	private String login = "login";
-	private String home = "StudentHome";
+	private String shome = "StudentHome";
+	private String thome = "TeacherHome";
+
 	@Autowired
 	private AccountRepository accountRepository;
 
@@ -74,11 +76,20 @@ public class AccountController {
 		}
 
 		if (account.getPassword().equals(password)) {
-			mav.setViewName(home);
-		} else {
+			if(account instanceof Teacher){
+				mav.setViewName(thome);
+			}
+			else{
+				mav.setViewName(shome);
+			}
+		}
+		
+		else {
 			mav.setViewName(login);
 			mav.addObject("wrongpassword", "The password you entered doesn't match");
 		}
+		
+		
 
 		return mav;
 	}
