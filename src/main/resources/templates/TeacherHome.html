@@ -65,11 +65,11 @@
       <div th:each ="course : ${courses}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
-			<a href="@{/course.Name}">
+			<a href="/Course">
 
 				<img class ="crop-img" src="book.jpg"/>
 
-				<p th:inline = "text" > [[${course.Name}]] </p></a>
+				<p th:inline = "text" > [[${course.courseName}]] </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>
 		
