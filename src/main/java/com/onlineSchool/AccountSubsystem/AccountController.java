@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-	private String mainpage  = "main" ;
+	private String mainpage  = "Main" ;
 	private String register = "register";
 	private String login = "login";
 	private String shome = "StudentHome";
@@ -82,7 +82,7 @@ public class AccountController {
 		}
 
 		if (account.getPassword().equals(password)) {
-			mav.addObject("user",account);
+			mav.addObject("account", account);
 			List<Course> courses = courseRepository.findAll();
 			mav.addObject("courses",courses); 
 			if(account instanceof Teacher){
