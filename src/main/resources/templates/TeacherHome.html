@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
 <meta charset="ISO-8859-1"></meta>
 	<title>online School</title>
 
@@ -10,7 +9,6 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"/> 
 	 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"/>
      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'/>
-
 	  
   </head>
   <body>
@@ -24,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" ><p style ="color:gray;" th:if="${user.username}" th:inline="text"> [[${user.username}]]  </p> </a>
+            <a class="navbar-brand" href="#" ><p style ="color:gray;" th:inline="text"> [[${account.username}]] </p> </a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -51,24 +49,17 @@
               <li  id = "home" ><a href="/createGame" style= "color: white;">Create Game</a></li>
 			</ul>
 	      <div class="navbar-form navbar-right">
-            <input id="searchbox" type="text" class="form-control" placeholder="Search...">
+            <input id="searchbox" type="text" class="form-control" placeholder="Search..."/>
            </div>
 		 </div> 	
 	  </nav>
-	 
- <!-- <div class= "features">
-	   <button> <a href = "/createCourse" style= "color: white;"> create Course </a> </button>
-	  <br /><br /> <br />
-	   <button> <a href = "/createCourse" style= "color: white;"> Create Game </a> </button>
-	 </div> --->
+	
 	<div class = "row">
       <div th:each ="course : ${courses}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
 			<a href="/Course">
-
 				<img class ="crop-img" src="book.jpg"/>
-
 				<p th:inline = "text" > [[${course.courseName}]] </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>
