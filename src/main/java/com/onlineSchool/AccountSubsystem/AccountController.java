@@ -1,4 +1,7 @@
 package com.onlineSchool.AccountSubsystem;
+import com.onlineSchool.CourseSubsystem.*;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,9 @@ public class AccountController {
 
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	CourseRepository courseRepository; 
 
 	@RequestMapping("/")
 	public String mainPage()
@@ -63,7 +69,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "/valid2")
 	public ModelAndView validLogin(@RequestParam("email") String email, 
-								   @RequestParam("password") String password,
+					@RequestParam("password") String password,
 			                       ModelAndView mav) {
 
 		Account account;
@@ -76,8 +82,12 @@ public class AccountController {
 		}
 
 		if (account.getPassword().equals(password)) {
+			mav.addObject("user",account);
+			List<Course> courses = courseRepository.findAll();
+			mav.addObject("courses",courses); 
 			if(account instanceof Teacher){
 				mav.setViewName(thome);
+				mav.addObject(0); 
 			}
 			else{
 				mav.setViewName(shome);
