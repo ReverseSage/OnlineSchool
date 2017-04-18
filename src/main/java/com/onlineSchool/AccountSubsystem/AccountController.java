@@ -12,11 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-	private String mainpage  = "Main" ;
+	private String mainpage  = "main" ;
 	private String register = "register";
 	private String login = "login";
-	private String shome = "StudentHome";
-	private String thome = "TeacherHome";
+	public String shome = "StudentHome";
+	public String thome = "TeacherHome";
 
 	@Autowired
 	private AccountRepository accountRepository;
@@ -82,12 +82,14 @@ public class AccountController {
 		}
 
 		if (account.getPassword().equals(password)) {
+			
 			mav.addObject("account", account);
 			List<Course> courses = courseRepository.findAll();
 			mav.addObject("courses",courses); 
+			
 			if(account instanceof Teacher){
 				mav.setViewName(thome);
-				mav.addObject(0); 
+				//mav.addObject(0); 
 			}
 			else{
 				mav.setViewName(shome);

@@ -1,3 +1,4 @@
+@media (min-width:900px){
 h2{
    font-size: 36px;
    font-style: italic;	
@@ -49,3 +50,32 @@ li:hover
 {
 	font-size: 15px;
 }
+
+form {
+   max-width: 600px;
+   text-align: center;
+   margin: 20px auto;
+   margin-top: 50px; 
+	
+}
+input{
+    width: 500px;	
+	border-radius: 20px;
+	outline: none;
+	padding: 10px;
+	color: white;
+	background-color: #98d4f3;
+	border: solid 3px #98d4f3;	
+}
+input[type = submit] {
+ color: white; 
+ background-color: red;
+ border:none;
+ font-size: 18px;	
+}
+.error
+{
+ font-size :15px; 
+ color: red;	
+}	
+
