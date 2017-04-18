@@ -20,18 +20,8 @@ public class CourseController {
 		return "index";
 	}
 	
-	@RequestMapping("/showCourses")
-	String showCourses() {
-		List<Course> courses = courseRepository.findAll();
-		for(int i = 0; i < courses.size(); i++) {
-			System.out.println(courses.get(i).getCourseName());
-			for(int j = 0; j < courses.get(i).getGames().size(); j++) {
-				System.out.println(courses.get(i).getGames().get(j).getGameName());
-			}
-		}
-		
-		return "Index";
-	}
+	
+	
 	
 	
 
