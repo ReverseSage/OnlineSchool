@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1"></meta>
-	<title>online School</title>
+	<meta charset="ISO-8859-1">
+	<title>online School</title></meta>
 
    <!--  <link href="css/bootstrap.css" rel="stylesheet"> -->
 	<link href="CSS/styles.css" rel="stylesheet"/> 
@@ -13,7 +13,7 @@
   </head>
   <body>
 
-       <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -22,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-          <!-- <a class="navbar-brand" href="#" ><p style ="color:gray;" th:inline="text"> [[${account.username}]] </p> </a> -->
+            <a class="navbar-brand" href="#" ><p style ="color:gray;" id = "userName">    </p> </a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -42,33 +42,44 @@
           </div>
         </div>
       </nav>
-	 <nav class="navbar navbar-default"> 
+     <nav class="navbar navbar-default"> 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
               <li  id = "home" ><a href="/createCourse" style= "color: white;">Create Course</a></li>
-              <li  id = "home" ><a href="/intialize" style= "color: white;">Create Game</a></li>
+              <li  id = "home" ><a href="/createGame" style= "color: white;">Create Game</a></li>
 			</ul>
 	      <div class="navbar-form navbar-right">
             <input id="searchbox" type="text" class="form-control" placeholder="Search..."/>
            </div>
 		 </div> 	
 	  </nav>
-	
-	<div class = "row">
-      <div th:each ="course : ${courses}">
-		<div class = "col-md-4 col-ms-12">
-			<div class = "box">
-			<a href="/Games">
-				<img class ="crop-img" src="https://lh3.ggpht.com/p3ai0rGfmE8vi6DEeWzcgxq6aUPKf0sAvjWXuU1ahP9JLg0lJPhtzUF0WR8wQyqH5Tg=h900"/>
-				<p th:inline = "text"  th:text = "${course.courseName}" th:value="${course.courseName}" name = "courseName" > [[${course.courseName}]] </p></a>
-			</div></div><div style = "border-top: 2px solid white;"></div>
-		</div>
-		</div>	
-	
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/angular.min.js"></script>
-	<script src="js/handlebars-v3.0.3.js"></script>
-  
-  </body>
+	  <center><p style = "font-family: 'Sniglet', cursive; font-size: 28px;"> CREATE GAME </p></center>
+	  <div class ="container">
+	   <form name = "createGame" action ="/addQuestions" method = "POST">
+		 <p class = "error" th:if="${error}" th:inline="text"> [[${error}]] </p>   
+		Game Name:
+		   <br />
+           <input type = "text"  value = "" required = "required" name = "gameName"/>
+		   <br /><br /><br />
+		Course Name:
+		   <br /><select required = "required" id = "courseName"  name = "courseName" >
+		   <div th:each ="course : ${courses}">
+             <option th:line = "text" name = "courseName" th:text = "${course.courseName}" > [[${course.Name}]] </option>
+			</div>
+       </select>
+		 <br /><br />
+		   
+		   
+		   <div style = "font-size: 15px;margin-top:15px;">
+		   
+		<input type="radio" style= "margin-left:25px;" name="Type" value="T/F" id = "T/F" checked="checked"/>  T/F 
+		 <input type="radio" name="Type" value="MCQ" id = "MCQ" /> MCQ 
+	      <input type="radio" name="Type" value="RUNCODE" id = "RUNCODE"/> RUNCODE	
+		   </div>
+		   <br /><br />
+		
+		   <input type = "submit" value = "Continue" name =""/>
+	  </form> 
+	  </div>
+	</body>
 </html>

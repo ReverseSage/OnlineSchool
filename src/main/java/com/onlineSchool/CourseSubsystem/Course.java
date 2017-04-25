@@ -27,11 +27,11 @@ public class Course {
 	public void setGames(List<Game> games) {
 		this.games = games;
 	}
-	Course(){
+	public Course(){
 		
 	}
 	
-	Course(String courseName){
+	public Course(String courseName){
 		this.courseName = courseName ;
 	}
 

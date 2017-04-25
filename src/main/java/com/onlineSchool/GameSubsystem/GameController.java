@@ -1,66 +1,112 @@
 package com.onlineSchool.GameSubsystem;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.onlineSchool.CourseSubsystem.Course;
+import com.onlineSchool.CourseSubsystem.CourseRepository;
 
 @Controller
 public class GameController {
+	
 	@Autowired
 	GameRepository gameRepository;
 	
+	@Autowired
+	CourseRepository courseRepository;
 	
-	@RequestMapping("/createTrueOrFlaseGame")
-	String createTrueOrFalseGame(@RequestParam("courseName") String courseName,
-								 @RequestParam("gameName") String gameName) {
-		Course course = new Course();
-		Game game = new Game();
-		List <Question> questions = new ArrayList <Question> ();
-		
-		game.setGameName(gameName);
-		
-		TrueOrFalse question1 = new TrueOrFalse();
-		question1.setHeader("5 + 3 = 4?");
-		question1.setAnswer("False");
-		question1.setGame(game);
-		
-		TrueOrFalse question2 = new TrueOrFalse();
-		question2.setHeader("1 + 1 = 2?");
-		question2.setAnswer("True");
-		question2.setGame(game);
-		
-		questions.add(question1);
-		questions.add(question2);
-		
-		game.setQuestions(questions);
-		
-		course.setCourseName(courseName);
-		
-		game.setCourse(course);
-		
-		gameRepository.save(game);
-		
-		return "index";
+	Game game = new Game();
+	private boolean step1 = false , step2 = false;
+	
+	
+	@RequestMapping("/intialize")
+	ModelAndView initializeGame(ModelAndView mav){
+		List<Course> courses = courseRepository.findAll();
+		mav.setViewName("initializeGame");
+		mav.addObject("courses",courses);
+		step1 = true;
+		return mav;
 	}
 	
-	@RequestMapping("/playGame")
-	String playGame(@RequestParam("gameName")String gameName) {
+	@RequestMapping("/addQuestions")
+	ModelAndView addQuestions(@RequestParam("courseName")String courseName,
+								@RequestParam("gameName")String gameName,
+								@RequestParam("Type")String type,
+								@RequestParam("size")int size,
+										ModelAndView mav) {			
 		
-		Game game = gameRepository.findOne(gameName);
-		if(game.getQuestions().get(0).getClass() == TrueOrFalse.class) {
-			for (int i = 0; i < game.getQuestions().size(); i++) {
-				System.out.println(((TrueOrFalse) game.getQuestions().get(i)).getHeader());
-				System.out.println(((TrueOrFalse) game.getQuestions().get(i)).getAnswer());
-			}
+		if(!step1){
+			mav.setViewName("intializeGame");
+			return mav;
+		}
+		step1 = false;
+		
+		if(gameRepository.exists(gameName)){
+			mav.addObject("error","Game with the same name already exists please try again!");
+			mav.setViewName("initializeGame");
+			return mav;
 		}
 		
-		return "index";
+		game.setCourse(courseRepository.findOne(courseName));
+		game.setGameName(gameName);
+		
+		if(type.equals("T/F")){
+			List<TrueOrFalse> QUESTIONS = new ArrayList<TrueOrFalse>(size);
+			mav.setViewName("TFView");
+			mav.addObject("questions",QUESTIONS);
+			step2 = true;
+			return mav;
+		}
+		else if(type.equals("MCQ")){
+			List<MultipleChoice> QUESTIONS = new ArrayList<MultipleChoice>(size);
+			mav.setViewName("MCQ");
+			mav.addObject("questions",QUESTIONS);
+			step2 = true;
+			return mav;
+		}    
+		else{
+			//RunCode RUNCODE = new RunCode();
+			mav.setViewName("RUNCode");
+			mav.addObject("questions",null);
+			step2 = true;
+			return mav;
+		}
+		
 	}
+	
+	@RequestMapping("/createGame")
+	ModelAndView createGame(@ModelAttribute("questions")ArrayList<Question> questions,ModelAndView mav){
+		
+		if(!step2){
+			mav.setViewName("intializeGame");
+			return mav;
+		}
+		step2 = false;
+		
+		game.setQuestions(questions);
+		gameRepository.save(game);
+		
+		
+		return mav;
+	}
+	
+		
+	
+	
+	
+	@RequestMapping("/playGame")
+	ModelAndView playGame(@RequestParam("game")Game game,ModelAndView mav){
+		
+		return mav;
+	}
+	
 
 }

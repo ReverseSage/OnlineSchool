@@ -67,7 +67,7 @@ public class AccountController {
 	
 	
 	
-	@RequestMapping(value = "/valid2")
+	@RequestMapping(value = "/home")
 	public ModelAndView validLogin(@RequestParam("email") String email, 
 					@RequestParam("password") String password,
 			                       ModelAndView mav) {
@@ -89,10 +89,9 @@ public class AccountController {
 			
 			if(account instanceof Teacher){
 				mav.setViewName(thome);
-				//mav.addObject(0); 
 			}
 			else{
-				mav.setViewName(shome);
+				mav.setViewName( shome);
 			}
 		}
 		
@@ -101,9 +100,9 @@ public class AccountController {
 			mav.addObject("wrongpassword", "The password you entered doesn't match");
 		}
 		
-		
-
 		return mav;
 	}
+	
+	
 	
 }

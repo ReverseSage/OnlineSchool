@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1"></meta>
-	<title>online School</title>
+	<meta charset="ISO-8859-1">
+	<title>online School</title></meta>
 
    <!--  <link href="css/bootstrap.css" rel="stylesheet"> -->
 	<link href="CSS/styles.css" rel="stylesheet"/> 
@@ -13,7 +13,7 @@
   </head>
   <body>
 
-       <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -22,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-          <!-- <a class="navbar-brand" href="#" ><p style ="color:gray;" th:inline="text"> [[${account.username}]] </p> </a> -->
+           <!-- <a class="navbar-brand" href="#" ><p style ="color:gray;" th:if="${user.username}" th:inline="text"> [[${user.username}]]  </p> </a> -->
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -42,33 +42,23 @@
           </div>
         </div>
       </nav>
-	 <nav class="navbar navbar-default"> 
+     <nav class="navbar navbar-default"> 
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-              <li  id = "home" ><a href="/createCourse" style= "color: white;">Create Course</a></li>
-              <li  id = "home" ><a href="/intialize" style= "color: white;">Create Game</a></li>
-			</ul>
 	      <div class="navbar-form navbar-right">
             <input id="searchbox" type="text" class="form-control" placeholder="Search..."/>
            </div>
 		 </div> 	
 	  </nav>
-	
+	  
 	<div class = "row">
-      <div th:each ="course : ${courses}">
+	  <div th:each ="game : ${games}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
-			<a href="/Games">
-				<img class ="crop-img" src="https://lh3.ggpht.com/p3ai0rGfmE8vi6DEeWzcgxq6aUPKf0sAvjWXuU1ahP9JLg0lJPhtzUF0WR8wQyqH5Tg=h900"/>
-				<p th:inline = "text"  th:text = "${course.courseName}" th:value="${course.courseName}" name = "courseName" > [[${course.courseName}]] </p></a>
+			<a href="/">
+				<img class ="crop-img" src="https://lh6.ggpht.com/gbTtTZCKQ49a_xkThokQKwmaaKGCKMNKtIf3bqxhj43UImd-HpSWfzRbza5qszPLuQSk=h1080"/>
+				<p th:inline = "text" > [[${game.gameName}]] </p></a>
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>
-		</div>	
-	
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/angular.min.js"></script>
-	<script src="js/handlebars-v3.0.3.js"></script>
-  
-  </body>
+		</div>
+</body>
 </html>

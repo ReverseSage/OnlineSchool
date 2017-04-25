@@ -51,14 +51,14 @@ li:hover
 	font-size: 15px;
 }
 
-form {
+form,.nestedForm {
    max-width: 600px;
    text-align: center;
    margin: 20px auto;
    margin-top: 50px; 
 	
 }
-input{
+input,select{
     width: 500px;	
 	border-radius: 20px;
 	outline: none;
@@ -71,11 +71,29 @@ input[type = submit] {
  color: white; 
  background-color: red;
  border:none;
- font-size: 18px;	
+ font-size: 18px;
+ margin-left: 90px;	
 }
 .error
 {
  font-size :15px; 
  color: red;	
 }	
+input[type = radio]{
+ 	width: 50px;
+	padding: 0px;
+}
 
+#Nbutton{
+	 color:white;
+	  background-color: red;
+	  margin-left:10px;
+	}
+	
+a:hover{
+	 font-size:14px;
+	}
+input[type = number]{
+	 width: 100px;
+	}
+}

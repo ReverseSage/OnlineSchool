@@ -58,8 +58,7 @@
 	  <div class ="container">
 	   <form name = "cCourse" action ="/validCourse" method = "POST">
 		 <p class = "error" th:if="${error}" th:inline="text"> [[${error}]] </p>   
-		Enter course Name:
-		  <br />
+		Course Name:
 		  <input type = " text" name =  "courseName" th:value = "${course.courseName}" placeholder = ""/>
 		  <br /> <br /> <br />
 		  <input type = "submit" name ="cCourse" value = "Create Course"/>

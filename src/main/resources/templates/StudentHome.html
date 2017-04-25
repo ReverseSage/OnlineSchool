@@ -22,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" ><p style ="color:gray;" th:inline="text"> [[${account.username}]]  </p> </a>
+           <!-- <a class="navbar-brand" href="#" ><p style ="color:gray;" th:inline="text"> [[${account.username}]]  </p> </a> -->
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -53,10 +53,11 @@
 		<div th:each ="course : ${courses}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
-			<a href="/Course">
-				<img class ="crop-img" src="book.jpg"/>
-				 <p th:if="${course.courseName}" th:inline = "text" > [[${course.courseName}]] </p>
-			</a>
+			<a href="/Games">
+				<img class ="crop-img" src="https://lh3.ggpht.com/p3ai0rGfmE8vi6DEeWzcgxq6aUPKf0sAvjWXuU1ahP9JLg0lJPhtzUF0WR8wQyqH5Tg=h900"/>
+				<p th:inline = "text"  th:text = "${course.courseName}" th:value="${course.courseName}" name = "courseName" > [[${course.courseName}]] </p>
+				</a>
+			
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>	
 	<!--	<div class = "col-md-4 col-ms-12">
