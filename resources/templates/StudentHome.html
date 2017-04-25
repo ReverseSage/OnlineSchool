@@ -50,41 +50,24 @@
 	 
 	  
 	<div class = "row">
-		<div th:each ="course : ${courses}">
+      <div th:each ="course : ${courses}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
-			<a href="/Games">
-				<img class ="crop-img" src="https://lh3.ggpht.com/p3ai0rGfmE8vi6DEeWzcgxq6aUPKf0sAvjWXuU1ahP9JLg0lJPhtzUF0WR8wQyqH5Tg=h900"/>
-				<p th:inline = "text"  th:text = "${course.courseName}" th:value="${course.courseName}" name = "courseName" > [[${course.courseName}]] </p>
-				</a>
-			
+				<img class ="crop-img" src="https://lh3.ggpht.com/p3ai0rGfmE8vi6DEeWzcgxq6aUPKf0sAvjWXuU1ahP9JLg0lJPhtzUF0WR8wQyqH5Tg=h900" />
+				<p style="cursor:pointer" th:inline = "text" th:value ="${course.courseName}" name = "coursename" id = "courses" onclick ="assign(this)"> [[${course.courseName}]] </p>
 			</div></div><div style = "border-top: 2px solid white;"></div>
+		</div>
+		<form id="form" action = "/Games"   style = "display: none;" method = "post" >
+			 <input type = "text" id = "Name" name = "courseName"/>
+		</form>
 		</div>	
-	<!--	<div class = "col-md-4 col-ms-12">
-			<div class = "box">
-			<a href="#">
-				<img class ="crop-img" src="book.jpg">
-			  <p > math </p></a>
-			</div></div><div style = "border-top: 2px solid white;"></div>
-		<div class = "col-md-4 col-ms-12">
-			<div class = "box">
-			<a href="#">
-			    <img class ="crop-img" src="book.jpg">
-			<p > Programming </p></a>
-			</div></div><div style = "border-top: 2px solid white;"></div>
-		<div class = "col-md-4 col-ms-12">
-			<div class = "box">
-			<a href="#">
-			    <img class ="crop-img" src="book.jpg">
-			<p > Language </p></a>
-			</div></div><div style = "border-top: 2px solid white;"></div>
-		-->	
-	<!-- <tr th:each="course : ${courses}">
-	 <td th:text="${course.Name}"></td>
-     <img  th:src="${course.src}}" alt=""/> 
-   </tr> -->
-			</div>
-		
+	
+	<script>
+	function assign(object){
+		document.getElementById("Name").value = object.innerHTML /*document.getElementById("courses").innerHTML*/;
+		document.getElementById("form").submit();
+	}
+	</script>
 	 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
