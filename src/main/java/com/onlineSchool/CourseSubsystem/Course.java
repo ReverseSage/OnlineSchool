@@ -27,12 +27,5 @@ public class Course {
 	public void setGames(List<Game> games) {
 		this.games = games;
 	}
-	public Course(){
-		
-	}
-	
-	public Course(String courseName){
-		this.courseName = courseName ;
-	}
 
 }

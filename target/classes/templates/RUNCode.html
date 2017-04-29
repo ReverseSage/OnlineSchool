@@ -55,12 +55,12 @@
 	  </nav>
 	  <center><p style = "font-family: 'Sniglet', cursive; font-size: 28px;"> CREATE GAME </p></center>
 	  <div class ="container">
-	   <form name = "FillGame" action ="validateGame" method = "POST">	
+	   <form name = "FillGame" action ="/Creategame" method = "POST">	
 		Question header:
-		  <input type = "text" th:value ="${question.header}" required = "required" name = "QuesHeader" id = "Header"/>
+		  <input type = "text" th:value ="" required = "required" name = "Header" id = "Header"/>
 		  <br /><br /><br />
 		   
-	   <textarea rows="40" cols="50" th:value = "${question.answer}" name="Answer" form="Code">
+	   <textarea rows="40" cols="50" th:value = "" name="Answer" form="Code">
                 Enter Answer here...</textarea>		  
       	<br /> <br />
 		 </div>

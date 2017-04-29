@@ -55,21 +55,32 @@
 	  </nav>
 	  <center><p style = "font-family: 'Sniglet', cursive; font-size: 28px;"> CREATE GAME </p></center>
 	  <div class ="container">
-	   <form name = "createGame" action ="/createGame" method = "POST">	
-	 <div th:each = "question,iterStat : ${questions}" th:if="${iterStat.index}<2">  
+	  
+	   <form name = "createGame" id = "create" action= "/createGame" method = "POST">	
+	 <div>  
 		Question header:
-		  <input type = "text" th:value ="${question.header}" required = "required" name = "QuesHeader" id = "Header"/>
+		  <input type = "text"  required = "required" name = "Header" id = "Header"/>
 		  <br /><br /><br />
 		   
-	   <input type="radio" th:value ="${question.answer}" name="Type"  id = "Answer" />  True 
-	   <input type="radio" th:value ="${question.answer}" name="Type"  id = "Answer"/> False 
+	   <input type="radio"   name="Answer" value= "true"  id = "Answer" />  True 
+	   <input type="radio"  name = "Answer" value= "false" id = "Answer"/> False 
 		  
        <br /> <br />
-		  <button style = "margin-left:-5px; background-color: orange; color: white;"  class="repeat">Add Another</button>
-	   <br /> <br />
+		 <button type = "button" style = "margin-left:-5px; background-color:orange; color: white;"
+		  onclick ="change()">Add Another</button>
+	   <br /> <br /> 
 		 </div>
-		   <input style = "margin-left:-10px;" type = "submit" class = "repeat" name ="cGame" value = "Create Game"/>
+		   <input style = "margin-left:-10px;" type = "submit" name ="cGame" value = "Create Game"/>
 	  </form> 
 	  </div>
+	  
+	  
+	  <script>
+		 function change()
+	      {
+			document.getElementById('create').action = '/validGame'; 
+	     	document.getElementById('create').submit();
+	      }
+     </script> 
 	</body>
 </html>

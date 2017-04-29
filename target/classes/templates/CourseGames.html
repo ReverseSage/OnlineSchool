@@ -54,11 +54,20 @@
 	  <div th:each ="game : ${games}">
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
-			<a href="/">
-				<img class ="crop-img" src="https://lh6.ggpht.com/gbTtTZCKQ49a_xkThokQKwmaaKGCKMNKtIf3bqxhj43UImd-HpSWfzRbza5qszPLuQSk=h1080"/>
-				<p th:inline = "text" > [[${game.gameName}]] </p></a>
+			 <img class ="crop-img" src="https://lh6.ggpht.com/gbTtTZCKQ49a_xkThokQKwmaaKGCKMNKtIf3bqxhj43UImd-HpSWfzRbza5qszPLuQSk=h1080"/>
+			  <p th:inline = "text" th:value ="${game.gameName}" name = "gamename" onclick ="assign(this)"> [[${game.gameName}]]</p>
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>
+		<form id="Form" action = "/Game"   style = "display: none;" method = "post" >
+			 <input type = "text" id = "name" name = "gameName"/>
+		</form>
 		</div>
+		
+		<script>
+	function assign(object){
+		document.getElementById("name").value = object.innerHTML /*document.getElementById("courses").innerHTML*/;
+		document.getElementById("Form").submit();
+	}
+	</script>
 </body>
 </html>

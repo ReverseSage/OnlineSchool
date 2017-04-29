@@ -12,14 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-	private String mainpage  = "main" ;
+	private String mainpage  = "Main" ;
 	private String register = "register";
 	private String login = "login";
-	public String shome = "StudentHome";
-	public String thome = "TeacherHome";
+	private String shome = "StudentHome";
+	private String thome = "TeacherHome";
 
 	@Autowired
 	private AccountRepository accountRepository;
+	Account account;
 	
 	@Autowired
 	CourseRepository courseRepository; 
@@ -38,8 +39,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "/valid")
-	public ModelAndView validRegister(@ModelAttribute("account") Account account, 
-			                          @RequestParam("type") String type,
+	public ModelAndView validRegister(@ModelAttribute("account") Account account,String type,
 			                          @RequestParam("Academic Mail") String academicMail, 
 			                          ModelAndView mav) {
 		if (type.equals("student")) {
@@ -72,7 +72,7 @@ public class AccountController {
 					@RequestParam("password") String password,
 			                       ModelAndView mav) {
 
-		Account account;
+	   // Account account;
 		if (accountRepository.exists(email)) {
 			account = accountRepository.findOne(email);
 		} else {
@@ -82,16 +82,15 @@ public class AccountController {
 		}
 
 		if (account.getPassword().equals(password)) {
-			
 			mav.addObject("account", account);
 			List<Course> courses = courseRepository.findAll();
-			mav.addObject("courses",courses); 
-			
+			mav.addObject("courses",courses);
 			if(account instanceof Teacher){
 				mav.setViewName(thome);
+				mav.addObject(0); 
 			}
 			else{
-				mav.setViewName( shome);
+				mav.setViewName(shome);
 			}
 		}
 		
@@ -99,10 +98,27 @@ public class AccountController {
 			mav.setViewName(login);
 			mav.addObject("wrongpassword", "The password you entered doesn't match");
 		}
-		
 		return mav;
 	}
 	
+	@RequestMapping(value = "/thome")
+	public ModelAndView teacherHome(ModelAndView mav)
+	{
+		mav.setViewName(thome);
+		mav.addObject("account", account);
+		List<Course> courses = courseRepository.findAll();
+		mav.addObject("courses",courses); 
+		return mav;
+	}
 	
+	@RequestMapping(value = "/shome")
+	public ModelAndView studentHome(ModelAndView mav)
+	{
+		mav.setViewName(thome);
+		mav.addObject("account", account);
+		List<Course> courses = courseRepository.findAll();
+		mav.addObject("courses",courses); 
+		return mav;
+	}
 	
 }

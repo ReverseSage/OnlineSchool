@@ -59,7 +59,7 @@
 	   <form name = "cCourse" action ="/validCourse" method = "POST">
 		 <p class = "error" th:if="${error}" th:inline="text"> [[${error}]] </p>   
 		Course Name:
-		  <input type = " text" name =  "courseName" th:value = "${course.courseName}" placeholder = ""/>
+		  <input type = " text" name =  "courseName" required = "required" th:value = "${course.courseName}" placeholder = ""/>
 		  <br /> <br /> <br />
 		  <input type = "submit" name ="cCourse" value = "Create Course"/>
 	  </form> 

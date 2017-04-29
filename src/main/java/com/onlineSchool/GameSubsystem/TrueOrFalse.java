@@ -1,3 +1,4 @@
+
 package com.onlineSchool.GameSubsystem;
 
 import javax.persistence.Entity;
