@@ -25,6 +25,7 @@ public class GameController {
     ArrayList<Question> questions = new ArrayList<Question>();
     private boolean step1 = false , step2 = false;
     Game game = new Game();
+    int count = 0;
    
     
     @RequestMapping("/intialize")
@@ -169,8 +170,41 @@ public class GameController {
     }
     
     @RequestMapping("/playGame")
-    ModelAndView playGame(@RequestParam("game")Game game,ModelAndView mav){
-       
+    ModelAndView playGame(@RequestParam("game")Game game,
+    					@RequestParam("answers")ArrayList<String> answers,
+    					@RequestParam("count") int count,
+    					@RequestParam("thisanswer")String thisAnswer,
+    					ModelAndView mav){
+    	
+    		if(count < 0){
+    			mav.setViewName("redirect:/home");
+    			return mav;
+    		}
+    		
+    		
+    		if(count >= game.getQuestions().size()){
+    			count = 0;
+    			mav.setViewName("redirect:/home");
+    			return mav;
+    		}
+    		
+    		
+    		if(answers.get(count).equals(thisAnswer)){
+    			mav.addObject("result","the answer is correct");
+    		}
+    		else{
+    			mav.addObject("result","the answer is wrong. Correct answer is :");
+    			mav.addObject("correct",answers.get(count));
+    		}
+    		
+    		mav.setViewName("redirect:/playgame");
+    		mav.addObject("game",game);
+    		mav.addObject("answers",answers);
+    		mav.addObject("count",count+1);
+    		
+    		
+    	
+    		
         return mav;
     }
    
