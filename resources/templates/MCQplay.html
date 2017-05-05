@@ -55,17 +55,17 @@
 	
 			<div class = "box1">
 			 <p class ="specialCase" th:inline = "text" name = "gamename" th:value = "${game.gameName}"> [[${game.gameName}]]</p>
-               <br /> <br /> <br />
+               <br /> 
 				 <form id = "form" action = "/Check" method = "POST">
 			     <p th:inline = "text" name = "header"> [[${question.header}]]</p>
 			     <h1  id = "answer" th:value = "${question.correctChoice}" style = "display: none;" th:inline = "text" name = "answer"> [[${question.correctChoice}]]</h1>
-				  <br /><br />
-				   <div th:each = "choice: ${question.choices}">
+				  <br />
+				   <div style = "font-size:25px;" th:each = "choice: ${question.choices}">
 				     <input type="radio" name = "Answer" id = "choices" th:value = "${choice}" th:text = "${choice}"/>
 				     <br />
-				   </div> 
+				   </div>
 				  <br />
-			<input type = "button" style = "margin-left:-15px;" value = "Done"  id = "button"/>
+			<input type = "button" style = "margin-left:-15px;font-size:20px;" value = "Done"  id = "button"/>
 				</form>
 			</div><div style = "border-top: 2px solid transeparent;"></div>
 	  
@@ -78,7 +78,7 @@
 			 console.log(actualAnswer);
 	    	 if(expectedAnswer === actualAnswer)
 	   	 	   {
-	    		 alert("Well Done ^_^");
+	    		 alert("Well Done  ^_^ ");
 	    		 document.getElementById("form").submit(); 
 	    		 return;
 	    	   }
