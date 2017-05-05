@@ -6,11 +6,16 @@ import java.util.List;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
- 
+
+import com.onlineSchool.AccountSubsystem.Teacher;
 import com.onlineSchool.CourseSubsystem.Course;
+import com.onlineSchool.CourseSubsystem.CourseController;
 import com.onlineSchool.CourseSubsystem.CourseRepository;
  
 @Controller
@@ -25,8 +30,8 @@ public class GameController {
     ArrayList<Question> questions = new ArrayList<Question>();
     private boolean step1 = false , step2 = false;
     Game game = new Game();
-    int count = 0;
-   
+    Game currGame = new Game();
+    int index = 0;
     
     @RequestMapping("/intialize")
     ModelAndView initializeGame(ModelAndView mav){
@@ -53,8 +58,8 @@ public class GameController {
         step1 = false;
        
         if(gameRepository.exists(gameName)){
+        	mav.setViewName("initializeGame");
             mav.addObject("error","Game with the same name already exists please try again!");
-            mav.setViewName("initializeGame");
             List<Course> courses = courseRepository.findAll();
             mav.addObject("courses",courses);
             return mav;
@@ -91,6 +96,7 @@ public class GameController {
     	TrueOrFalse question = new TrueOrFalse();
     	question.setHeader(header);
     	question.setAnswer(answer);
+    	question.setGame(game);
     	questions.add(question);
         mav.setViewName("TFView");
     	return mav;
@@ -108,6 +114,7 @@ public class GameController {
         TrueOrFalse question = new TrueOrFalse();
     	question.setHeader(header);
     	question.setAnswer(answer);
+    	question.setGame(game);
     	questions.add(question);
         game.setQuestions(questions);
         gameRepository.save(game);
@@ -134,6 +141,7 @@ public class GameController {
     	answers.add(choice3);
     	answers.add(choice4);
     	question.setChoices(answers);
+    	question.setGame(game);
     	questions.add(question);
         mav.setViewName("MCQ");
     	return mav;
@@ -162,6 +170,7 @@ public class GameController {
     	answers.add(choice3);
     	answers.add(choice4);
     	question.setChoices(answers);
+    	question.setGame(game);
     	questions.add(question);
     	game.setQuestions(questions);
         gameRepository.save(game);
@@ -170,43 +179,82 @@ public class GameController {
     }
     
     @RequestMapping("/playGame")
-    ModelAndView playGame(@RequestParam("game")Game game,
-    					@RequestParam("answers")ArrayList<String> answers,
-    					@RequestParam("count") int count,
-    					@RequestParam("thisanswer")String thisAnswer,
-    					ModelAndView mav){
-    	
-    		if(count < 0){
-    			mav.setViewName("redirect:/home");
-    			return mav;
-    		}
-    		
-    		
-    		if(count >= game.getQuestions().size()){
-    			count = 0;
-    			mav.setViewName("redirect:/home");
-    			return mav;
-    		}
-    		
-    		
-    		if(answers.get(count).equals(thisAnswer)){
-    			mav.addObject("result","the answer is correct");
-    		}
-    		else{
-    			mav.addObject("result","the answer is wrong. Correct answer is :");
-    			mav.addObject("correct",answers.get(count));
-    		}
-    		
-    		mav.setViewName("redirect:/playgame");
-    		mav.addObject("game",game);
-    		mav.addObject("answers",answers);
-    		mav.addObject("count",count+1);
-    		
-    		
-    	
-    		
-        return mav;
+    ModelAndView playGame(@RequestParam("gameName")String gameName,ModelAndView mav){
+    gameName = gameName.substring(1, gameName.length());
+    currGame = gameRepository.findOne(gameName);
+   // if(currGame.getQuestions() instanceof TrueOrFalse)
+    // { 
+    //	mav.setViewName("PlayTF");
+    // }
+   // else
+   // {
+	   mav.setViewName("MCQplay");
+   // }
+   mav.addObject("game", currGame);
+   mav.addObject("question", currGame.getQuestions().get(index++));
+   return mav;
     }
-   
- 
+    
+    /* for playing T/F Game and Swapping questions */
+    @RequestMapping("/check")
+    ModelAndView playTF(ModelAndView mav)
+    {
+     mav.setViewName("PlayTF");	
+     if(index == currGame.getQuestions().size())
+     {
+    	 mav.setViewName("redirect:/Congratulations");
+     }
+     else{
+      mav.addObject("game", currGame);
+      mav.addObject("question", currGame.getQuestions().get(index++));
+     }
+     return mav;
+    }
+    
+    /* for playing MCQ Game and Swapping questions */
+    @RequestMapping("/Check")
+    ModelAndView playMCQ(ModelAndView mav)
+    {
+    	mav.setViewName("MCQplay");	
+     if(index == currGame.getQuestions().size())
+     {
+    	 mav.setViewName("redirect:/Congratulations");
+    	 index = 0;
+    	 currGame = new Game();
+     }
+     else{
+    	 mav.addObject("game", currGame);
+    	 mav.addObject("question", currGame.getQuestions().get(index++));
+     }
+     return mav;
+    }
+    
+    @RequestMapping("/Congratulations")
+    ModelAndView congratulations(ModelAndView mav)
+    {
+    	mav.setViewName("Congratulations");
+   	    mav.addObject("game", currGame);
+   	   index = 0;
+   	   currGame = new Game();
+       return mav;
+    }
+    
+    @RequestMapping("/Edit")
+    ModelAndView EditGame(@RequestParam("game")Game game,ModelAndView mav)
+    {
+       Game gam = gameRepository.findOne(game.getGameName());
+       mav.setViewName("EditGame");
+       mav.addObject(game);
+       return mav;
+    }
+
+    @RequestMapping("/Done")
+    String saveNewGame(@RequestParam("Game") Game game)
+    {
+        Game gam = gameRepository.findOne(game.getGameName());
+        gameRepository.delete(gam);
+        gameRepository.save(game);
+		return "redirect:/thome";
+    }
+  
 }
