@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>online School</title></meta>
+
+   <!--  <link href="css/bootstrap.css" rel="stylesheet"> -->
+	<link href="CSS/styles.css" rel="stylesheet"/> 
+	<link  href="http://csshake.surge.sh/csshake-slow.min.css" rel="stylesheet" type="text/css" />
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"/> 
+	 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"/>
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+	  
+  </head>
+  <body style = "background-image: url('http://pos.jungheemun.com/images/night_sky_animated_by_toxtheerisian-d4gh9ct.gif')">
+
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+           <!-- <a class="navbar-brand" href="#" ><p style ="color:gray;" th:if="${user.username}" th:inline="text"> [[${user.username}]]  </p> </a> -->
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded="false" id = "contact">Contact<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Emails</a></li>
+                </ul>
+			
+              </li>
+            </ul>
+		 <ul class="nav navbar-nav navbar-right">
+         <li><a href="#">Setting</a></li>
+         <li><a href="#">Sign out</a></li>
+         </ul>
+          </div>
+        </div>
+      </nav>
+     <nav class="navbar navbar-default"> 
+        <div id="navbar" class="navbar-collapse collapse">
+	      <div class="navbar-form navbar-right">
+            <input id="searchbox" type="text" class="form-control" placeholder="Search..."/>
+           </div>
+		 </div> 	
+	  </nav>
+	  
+	
+			<div class = "box1">
+			 <p class ="specialCase" th:inline = "text" name = "gamename" th:value = "${game.gameName}"> [[${game.gameName}]]</p>
+               <br /> <br /> <br />
+			    <p th:inline = "text" name = "header"> [[${question.header}]]</p>
+			    <h1  id = "answer" th:value = "${question.answer}" style = "display: none;" th:inline = "text" name = "answer"> [[${question.answer}]]</h1>
+				<form id = "form" action = "/check" method = "POST">
+				 <input type="radio" name = "Answer"  value = "true"  id = "true"/>  True 
+	             <input type="radio" name = "Answer"   value = "false" id = "false"/> False 
+				 <br /><br /> 
+			 <input type = "button" style = "margin-left:-15px;" value = "Done" id = "button"/>
+				</form>
+			</div><div style = "border-top: 2px solid transeparent;"></div>
+	  
+	  <script> 
+     $('#button').on("click",function(e){
+    	 var expectedAnswer = ($("#answer").text());
+    	 expectedAnswer = expectedAnswer.substring(1);
+		 var actualAnswer = ($("#form input[type='radio']:checked").val());
+		 console.log(expectedAnswer);
+		 console.log(actualAnswer);
+    	 if(expectedAnswer === actualAnswer)
+   	 	   {
+    		 alert("Well Done ^_^");
+    		document.getElementById("form").submit(); 
+    		return;
+    	   }
+    		    	 
+    	 else{
+    		 alert("Wrong answer :(   try again  ;)   "); 
+    	   $("#button").effect( "shake",effect( "shake", {}, "fast" ));
+           e.preventDefault;
+    	  }
+});
+	    				 
+	  </script> 
+	  
+	 <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src ="js/jquery-ui.min.js"></script>
+</body>
+</html>
