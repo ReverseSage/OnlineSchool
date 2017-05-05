@@ -184,11 +184,11 @@ public class GameController {
     currGame = gameRepository.findOne(gameName);
    // if(currGame.getQuestions() instanceof TrueOrFalse)
     // { 
-    //	mav.setViewName("PlayTF");
+  	mav.setViewName("PlayTF");
     // }
    // else
    // {
-	   mav.setViewName("MCQplay");
+   //	   mav.setViewName("MCQplay");
    // }
    mav.addObject("game", currGame);
    mav.addObject("question", currGame.getQuestions().get(index++));
