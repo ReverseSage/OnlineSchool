@@ -182,13 +182,13 @@ public class GameController {
     ModelAndView playGame(@RequestParam("gameName")String gameName,ModelAndView mav){
     gameName = gameName.substring(1, gameName.length());
     currGame = gameRepository.findOne(gameName);
-   // if(currGame.getQuestions() instanceof TrueOrFalse)
-    // { 
-  	mav.setViewName("PlayTF");
-    // }
+    if((currGame.getQuestions().get(0)) instanceof TrueOrFalse)
+     { 
+    	mav.setViewName("PlayTF");
+     }
    // else
    // {
-   //	   mav.setViewName("MCQplay");
+   //   mav.setViewName("MCQplay");
    // }
    mav.addObject("game", currGame);
    mav.addObject("question", currGame.getQuestions().get(index++));
@@ -219,8 +219,6 @@ public class GameController {
      if(index == currGame.getQuestions().size())
      {
     	 mav.setViewName("redirect:/Congratulations");
-    	 index = 0;
-    	 currGame = new Game();
      }
      else{
     	 mav.addObject("game", currGame);
