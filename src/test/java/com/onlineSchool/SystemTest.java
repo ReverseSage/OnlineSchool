@@ -1,7 +1,5 @@
 package com.onlineSchool;
-
 import com.onlineSchool.Controllerstest.Signupcheck;
-import com.onlineSchool.Controllerstest.Studenttest;
 import com.onlineSchool.Controllerstest.TeacherTest;
 import com.onlineSchool.Controllerstest.Teachertest;
 import com.onlineSchool.Controllerstest.Teachertest1;
@@ -18,7 +16,6 @@ public class SystemTest {
     suite.addTestSuite(TeacherTest.class);
     suite.addTestSuite(Teachertest1.class);
     suite.addTestSuite(Teachertest2.class);
-    suite.addTestSuite(Studenttest.class);
     suite.addTestSuite(Signupcheck.class);
     return suite;
   }

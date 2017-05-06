@@ -85,10 +85,13 @@ input[type = radio]{
 	padding: 0px;
 }
 
-#Nbutton{
+#Nbutton,input[type = button]{
 	 color:white;
 	  background-color: red;
 	  margin-left:10px;
+	  border: none;
+	  height:60px;
+      width:150px;
 	}
 	
 a:hover{
@@ -97,4 +100,39 @@ a:hover{
 input[type = number]{
 	 width: 60px;
 	}
+
+.box1{
+    margin: auto;
+	margin-top: 15px;
+    width:600px;
+	text-align: center;
+	font-size: 28px;
+	height: auto;
+	padding:5px;
+	color : white;
+}
+input[type = radio]{
+	font-size:20px;
+}
+.specialCase,.cong{
+	font-size:45px;
+	text-align:center;
+	color:yellow;
+	font-style:italic;
+	font-family: "Tangerine", snapper;
+}
+.cong{
+    top: 45%;
+    position: absolute;
+    margin-right:450px;
+    font-size:32px;
+}
+textarea{
+	font-size:12px;
+	background-color:#98d4f3;
+	color:white;
+	border:none;
+	text-align:left;
+	}
+	
 }

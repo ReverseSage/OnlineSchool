@@ -6,7 +6,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 
 @Entity
-public class MultipleChoice extends Question {
+public class MultipleChoice extends Question  {
 	@ElementCollection
 	private List<String> choices;
 	private String correctChoice;

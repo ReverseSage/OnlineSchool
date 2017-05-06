@@ -14,25 +14,22 @@ h2{
 .container{
   text-align: center;
   margin-top: 120px;
- /* background-color: #ebebeb;*/
   padding-top: 5px;
   padding-bottom: 10px;
   width: 500px;
   height: 700px;	
   margin-left: 100px;
- /* border: 1px solid black;*/	
 }
+
 /* for main page */
 .home{
   text-align: center;
   margin-top: 100px;
-  /*background-color:#FEFFC8;*/
   padding-top: 5px;
   padding-bottom: 10px;
   width: 500px;
   height: 400px;	
   margin-left: 400px;
-  /*border: 1px solid grey;*/
 }
 	
 /* for login form */	

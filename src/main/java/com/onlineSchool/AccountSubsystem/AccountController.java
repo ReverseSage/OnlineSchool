@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AccountController {
-	private String mainpage  = "main" ;
+	private String mainpage  = "Main" ;
 	private String register = "register";
 	private String login = "login";
 	private String shome = "StudentHome";
@@ -72,7 +72,6 @@ public class AccountController {
 					@RequestParam("password") String password,
 			                       ModelAndView mav) {
 
-	   // Account account;
 		if (accountRepository.exists(email)) {
 			account = accountRepository.findOne(email);
 		} else {
