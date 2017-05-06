@@ -6,12 +6,14 @@
 
    <!--  <link href="css/bootstrap.css" rel="stylesheet"> -->
 	<link href="CSS/styles.css" rel="stylesheet"/> 
+	<link  href="http://csshake.surge.sh/csshake-slow.min.css" rel="stylesheet" type="text/css" />
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"/> 
 	 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"/>
      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
 	  
   </head>
-  <body>
+  <body style = "background-image: url('http://pos.jungheemun.com/images/night_sky_animated_by_toxtheerisian-d4gh9ct.gif')">
 
         <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -22,7 +24,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" ><p style ="color:gray;" id = "userName">    </p> </a>
+           <!-- <a class="navbar-brand" href="#" ><p style ="color:gray;" th:if="${user.username}" th:inline="text"> [[${user.username}]]  </p> </a> -->
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -44,42 +46,51 @@
       </nav>
      <nav class="navbar navbar-default"> 
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-              <li  id = "home" ><a href="/createCourse" style= "color: white;">Create Course</a></li>
-              <li  id = "home" ><a href="/createGame" style= "color: white;">Create Game</a></li>
-			</ul>
 	      <div class="navbar-form navbar-right">
             <input id="searchbox" type="text" class="form-control" placeholder="Search..."/>
            </div>
 		 </div> 	
 	  </nav>
-	  <center><p style = "font-family: 'Sniglet', cursive; font-size: 28px;"> CREATE GAME </p></center>
-	  <div class ="container">
 	  
-	   <form name = "createGame" id = "create" action= "/createGame" method = "POST">	
-	 <div>  
-		Question header:
-		  <input type = "text"  required = "required" name = "Header" id = "Header"/>
-		  <br /><br /><br />
-	   <input type="radio"  name="Answer" value= "true"  id = "Answer" />  True 
-	   <input type="radio"  name = "Answer" value= "false" id = "Answer"/> False 
-		  
-       <br /> <br />
-		 <button type = "button" style = "margin-left:-5px; background-color:orange; color: white;"
-		  onclick ="change()">Add Another</button>
-	   <br /> <br /> 
-		 </div>
-		   <input style = "margin-left:-10px;" type = "submit" name ="cGame" value = "Create Game"/>
-	  </form> 
-	  </div>
+	
+			<div class = "box1">
+			 <p class ="specialCase" th:inline = "text" name = "gamename" th:value = "${game.gameName}"> [[${game.gameName}]]</p>
+               <br /> <br />
+			    <p th:inline = "text" name = "header"> [[${question.header}]]</p>
+			    <h1  id = "answer" th:value = "${question.answer}" style = "display: none;" th:inline = "text" name = "answer"> [[${question.answer}]]</h1>
+				<form id = "form" action = "/check" method = "POST">
+				 <input type="radio" name = "Answer"  value = "true"  id = "true"/>  True 
+	             <input type="radio" name = "Answer"   value = "false" id = "false"/> False 
+				 <br /><br /> 
+			 <input type = "button" style = "margin-left:-15px;font-size:20px" value = "Done" id = "button"/>
+				</form>
+			</div><div style = "border-top: 2px solid transeparent;"></div>
 	  
+	  <script> 
+     $('#button').on("click",function(e){
+    	 var expectedAnswer = ($("#answer").text());
+    	 expectedAnswer = expectedAnswer.substring(1);
+		 var actualAnswer = ($("#form input[type='radio']:checked").val());
+		 console.log(expectedAnswer);
+		 console.log(actualAnswer);
+    	 if(expectedAnswer === actualAnswer)
+   	 	   {
+    		 alert("Well Done ^_^");
+    		document.getElementById("form").submit(); 
+    		return;
+    	   }
+    		    	 
+    	 else{
+    		 alert("Wrong answer :(   try again  ;)   "); 
+    	   $("#button").effect( "shake",effect( "shake", {}, "fast" ));
+           e.preventDefault;
+    	  }
+});
+	    				 
+	  </script> 
 	  
-	  <script>
-		 function change()
-	      {
-			document.getElementById('create').action = '/validGame'; 
-	     	document.getElementById('create').submit();
-	      }
-     </script> 
-	</body>
+	 <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src ="js/jquery-ui.min.js"></script>
+</body>
 </html>
