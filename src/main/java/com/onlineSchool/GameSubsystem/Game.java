@@ -23,8 +23,10 @@ public class Game {
 	private List<Question> questions;
 	@ManyToOne
 	@JoinColumn(name="email")
-	Teacher teacher;
-	
+	private Teacher teacher;
+	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+	private List<Comment> comments;
+
 	public String getGameName() {
 		return gameName;
 	}
@@ -42,6 +44,19 @@ public class Game {
 	}
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+	
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 }
