@@ -52,24 +52,9 @@
 		 </div> 	
 	  </nav>
 	  
-	     <form id = "edit" method = "post" style = "display:none;"  action = "/Edit">
-	     <input type = "text" name = "gameName" th:value = "${game.gameName}"/>
-	     </form>
-	     
-	      <form id = "delete" method = "post" style = "display:none;"  action = "/Cancel">
-	     <input type = "text" name = "gameName" th:value = "${game.gameName}"/>
-	     </form>
-	     
-	      <form id = "copy" method = "post" style = "display:none;"  action = "/CopyGame">
-	     <input type = "text" name = "gameName" th:value = "${game.gameName}"/>
-	     </form>
-	     
-	   <button class = "Prop" style = "margin-left:1105px;" onclick ="edit()">Edit Game</button>
-	   <button class = "Prop" onclick = "delet()">Delete Game</button>
-	  
-	       
-	   <div class = "box1">			
-			<p class ="specialCase" th:inline = "text" name = "gamename" th:value = "${game.gameName}" id = "gamename"> [[${game.gameName}]]</p>
+	
+			<div class = "box1">
+			 <p class ="specialCase" th:inline = "text" name = "gamename" th:value = "${game.gameName}"> [[${game.gameName}]]</p>
                <br /> <br />
 			    <p th:inline = "text" name = "header"> [[${question.header}]]</p>
 			    <h1  id = "answer" th:value = "${question.answer}" style = "display: none;" th:inline = "text" name = "answer"> [[${question.answer}]]</h1>
@@ -79,11 +64,7 @@
 				 <br /><br /> 
 			 <input type = "button" style = "margin-left:-15px;font-size:20px" value = "Done" id = "button"/>
 				</form>
-			</div>
-			
-			<form id="Editform" action = "/EditGame"   style = "display: none;" method = "post" >
-			 <input type = "text" id = "name" name = "gameName"/>
-		   </form>
+			</div><div style = "border-top: 2px solid transeparent;"></div>
 	  
 	  <script> 
      $('#button').on("click",function(e){
@@ -94,26 +75,18 @@
 		 console.log(actualAnswer);
     	 if(expectedAnswer === actualAnswer)
    	 	   {
-    		 alert("Correct answer, Well Done ^_^");
+    		 alert("Well Done ^_^");
     		document.getElementById("form").submit(); 
     		return;
     	   }
     		    	 
     	 else{
     		 alert("Wrong answer :(   try again  ;)   "); 
-             e.preventDefault;
+    	   $("#button").effect( "shake",effect( "shake", {}, "fast" ));
+           e.preventDefault;
     	  }
-      });
-	  function edit()
-	  {
-		 document.getElementById("edit").submit();  
-	  }
-	  function delet()
-	  {
-		 document.getElementById("delete").submit();  
-	  }
-	  
-	  
+});
+	    				 
 	  </script> 
 	  
 	 <script src="js/jquery.min.js"></script>

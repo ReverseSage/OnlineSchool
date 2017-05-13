@@ -201,8 +201,6 @@ public class GameController{
    return mav;
     }
     
-    
-    
     /* for playing T/F Game and Swapping questions */
     @RequestMapping("/check")
     ModelAndView playTF(ModelAndView mav)
@@ -220,7 +218,6 @@ public class GameController{
      return mav;
     }
     
-    
     /* for playing MCQ Game and Swapping questions */
     @RequestMapping("/Check")
     ModelAndView playMCQ(ModelAndView mav)
@@ -237,8 +234,6 @@ public class GameController{
      return mav;
     }
     
-    
-    /* Finishing up the game for the player */
     @RequestMapping("/Congratulations")
     ModelAndView congratulations(ModelAndView mav)
     {
