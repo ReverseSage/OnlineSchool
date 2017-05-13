@@ -3,6 +3,7 @@
   <groupId>com.a3</groupId>
   <artifactId>phas2_sw</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+ 
   
   <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -87,9 +88,7 @@
         </plugins>
     </build>
    
-   <property 
-    name="hibernate.enable_lazy_load_no_trans" 
-    value="true"/>
+   
 	
 	<properties>
 		<java.version>1.8</java.version>

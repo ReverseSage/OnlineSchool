@@ -4,6 +4,7 @@
   <artifactId>phas2_sw</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+ 
   
   <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -77,6 +78,13 @@
         <artifactId>h2</artifactId>
     </dependency>
     
+    <dependency>
+    	<groupId>com.github.jsimone</groupId>
+    	<artifactId>webapp-runner</artifactId>
+    	<version>8.0.24.0</version>
+	</dependency>
+    
+    
 	</dependencies>
 	
 	<build>
@@ -88,9 +96,7 @@
         </plugins>
     </build>
    
-   <property 
-    name="hibernate.enable_lazy_load_no_trans" 
-    value="true"/>
+   
 	
 	<properties>
 		<java.version>1.8</java.version>

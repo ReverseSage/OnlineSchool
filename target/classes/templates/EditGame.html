@@ -57,6 +57,7 @@
                <br /> <br />
 			 <form name = "Edit" action = "/Done" method = "POST"> 
 			 <input type = "text" style = "display:none;" name = "gameName" th:value = "${game.gameName}"/>
+			 <input type = "text" name = "newgameName" th:value = "${game.gameName}"/>
 			 <div style = "color: white;">Course Name </div>
 			   <input style = "height:50px;" type = "text"  required = "required" name = "courseName" id = "courseName" th:value = "${game.course.courseName}"/>
 			   <br /><br />
