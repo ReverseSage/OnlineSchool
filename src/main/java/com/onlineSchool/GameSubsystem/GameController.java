@@ -3,34 +3,29 @@ package com.onlineSchool.GameSubsystem;
  
 import java.util.ArrayList;
 import java.util.List;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onlineSchool.AccountSubsystem.AccountRepository;
-import com.onlineSchool.AccountSubsystem.Teacher;
+import com.onlineSchool.AccountSubsystem.Account;
 import com.onlineSchool.CourseSubsystem.Course;
-import com.onlineSchool.CourseSubsystem.CourseController;
 import com.onlineSchool.CourseSubsystem.CourseRepository;
  
 @Controller
-public class GameController{
+public class GameController {
    
     @Autowired
     GameRepository gameRepository;
+    
+    @Autowired
+    CommentRepository commentRepository;
        
     @Autowired
     CourseRepository courseRepository;
-    
-    @Autowired
-    AccountRepository accountRepository;
-    
+   
     ArrayList<Question> questions = new ArrayList<Question>();
     private boolean step1 = false , step2 = false;
     Game game = new Game();
@@ -186,7 +181,7 @@ public class GameController{
     ModelAndView playGame(@RequestParam("gameName")String gameName,ModelAndView mav){
     gameName = gameName.substring(1, gameName.length());
     currGame = gameRepository.findOne(gameName);
-    index = 0;
+    
     if((currGame.getQuestions().get(0)) instanceof TrueOrFalse)
      { 
     	mav.setViewName("PlayTF");
@@ -196,8 +191,7 @@ public class GameController{
    //   mav.setViewName("MCQplay");
    // }
    mav.addObject("game", currGame);
-   mav.addObject("question", currGame.getQuestions().get(index));
-   index++;
+   mav.addObject("question", currGame.getQuestions().get(index++));
    return mav;
     }
     
@@ -206,7 +200,6 @@ public class GameController{
     ModelAndView playTF(ModelAndView mav)
     {
      mav.setViewName("PlayTF");	
-     System.out.println(index);
      if(index == currGame.getQuestions().size())
      {
     	 mav.setViewName("redirect:/Congratulations");
@@ -239,22 +232,20 @@ public class GameController{
     {
     	mav.setViewName("Congratulations");
    	    mav.addObject("game", currGame);
-   	    index = 0;
-   	    System.out.println(index);
-   	    currGame = new Game();
+   	   index = 0;
+   	   currGame = new Game();
        return mav;
     }
     
-    /* Request Edit page to edit some game */
     @RequestMapping("/Edit")
-	public ModelAndView Edit(@RequestParam("gameName")String gameName , ModelAndView mav) {
-    	Game game = gameRepository.findOne(gameName);
-    	mav.setViewName("EditGame");
-		mav.addObject("game", game);
-		return mav;
-	}
-    
-    /* play the changes of editing in the system */
+    ModelAndView EditGame(@RequestParam("game")Game game,ModelAndView mav)
+    {
+       Game gam = gameRepository.findOne(game.getGameName());
+       mav.setViewName("EditGame");
+       mav.addObject(game);
+       return mav;
+    }
+
     @RequestMapping("/Done")
     String saveNewGame(@RequestParam("Game") Game game)
     {
@@ -264,12 +255,17 @@ public class GameController{
 		return "redirect:/thome";
     }
     
-    @RequestMapping("/Cancel")
-    String CancelGame(@RequestParam("gameName")String gameName)
+    @RequestMapping("/addComment")
+    void addComment(@RequestParam("text") String text, 
+    				@RequestParam("account") Account account,
+    				@RequestParam("game") Game game)
     {
-       Game game = gameRepository.findOne(gameName);	
-       gameRepository.delete(game);
-       return "redirect:/thome";
+    	Comment comment = new Comment();
+    	comment.setText(text);
+    	comment.setAccount(account);
+    	comment.setGame(game);
+    	commentRepository.save(comment);
     }
-
+    
+  
 }

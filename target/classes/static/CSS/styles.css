@@ -11,7 +11,6 @@ button{
     width:150px;	
     background-color: #3a57af;
     border:none;
-    color: white;
 }
 	
 .crop-img{
@@ -96,7 +95,7 @@ input[type = radio]{
 	}
 	
 a:hover{
-	/* font-size:15px;*/
+	 font-size:15px;
 	}
 input[type = number]{
 	 width: 60px;
@@ -111,7 +110,6 @@ input[type = number]{
 	height: auto;
 	padding:5px;
 	color : white;
-	margin-top:-20px;
 }
 input[type = radio]{
 	font-size:20px;
@@ -137,23 +135,4 @@ textarea{
 	text-align:left;
 	}
 	
-}
-
-.Prop{
- font-size:18px;
- background-color:#FFCD28;	
- color:white;
- display: inline-block;
- width:120px;	
-}
-#Back{
-	
-	background: red;
-	color:white;
-	width:300px;
-	position: center;
-	font-size:28px;
-	border-radius: 30px;
-	margin-top:307px;
-	margin-left:-50px;
 }

@@ -58,22 +58,8 @@
 			 <p class ="cong" th:inline = "text" name = "gamename" th:value = "${game.gameName}">
 			  Congratulations, you have finished [[${game.gameName}]] game <i class="em em-smile"></i> 
 			  , WELL DONE <i class="em em-wink"></i></p>
-			   <button id="Back" onclick = "back()"><span style = "width:100px;">&#8592;</span>Back to games</button>
                <br />
 			</div>
-			<form id = "backtoGames" action = "/Games">
-			<input style = "display:none;" id = "Name" name = "courseName"/>
-			</form>
-			
-			<p style="display:none;" th:inline = "text" th:value ="${game.course.courseName}" id = "course"> [[${game.course.courseName}]] </p>
-			
-	
-	<script>
-	function back(){
-		document.getElementById("Name").value = document.getElementById("course").innerHTML;
-		document.getElementById("backtoGames").submit();
-	}
-	</script>		
 	  
 	 <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

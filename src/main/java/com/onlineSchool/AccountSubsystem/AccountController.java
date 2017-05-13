@@ -53,7 +53,7 @@ public class AccountController {
 			mav.setViewName(register);
 		} else {
 			accountRepository.save(account);
-			mav.setViewName("redirect:/login");
+			mav.setViewName(login);
 		}
 		return mav;
 	}
