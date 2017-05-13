@@ -3,19 +3,15 @@ package com.onlineSchool.GameSubsystem;
  
 import java.util.ArrayList;
 import java.util.List;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.onlineSchool.AccountSubsystem.Teacher;
+import com.onlineSchool.AccountSubsystem.Account;
 import com.onlineSchool.CourseSubsystem.Course;
-import com.onlineSchool.CourseSubsystem.CourseController;
 import com.onlineSchool.CourseSubsystem.CourseRepository;
  
 @Controller
@@ -23,6 +19,9 @@ public class GameController {
    
     @Autowired
     GameRepository gameRepository;
+    
+    @Autowired
+    CommentRepository commentRepository;
        
     @Autowired
     CourseRepository courseRepository;
@@ -182,6 +181,7 @@ public class GameController {
     ModelAndView playGame(@RequestParam("gameName")String gameName,ModelAndView mav){
     gameName = gameName.substring(1, gameName.length());
     currGame = gameRepository.findOne(gameName);
+    
     if((currGame.getQuestions().get(0)) instanceof TrueOrFalse)
      { 
     	mav.setViewName("PlayTF");
@@ -254,5 +254,18 @@ public class GameController {
         gameRepository.save(game);
 		return "redirect:/thome";
     }
+    
+    @RequestMapping("/addComment")
+    void addComment(@RequestParam("text") String text, 
+    				@RequestParam("account") Account account,
+    				@RequestParam("game") Game game)
+    {
+    	Comment comment = new Comment();
+    	comment.setText(text);
+    	comment.setAccount(account);
+    	comment.setGame(game);
+    	commentRepository.save(comment);
+    }
+    
   
 }
