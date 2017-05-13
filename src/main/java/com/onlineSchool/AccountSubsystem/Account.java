@@ -1,12 +1,7 @@
 package com.onlineSchool.AccountSubsystem;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import com.onlineSchool.GameSubsystem.Comment;
 
 @Entity
 public class Account {
@@ -16,8 +11,6 @@ public class Account {
 	private String password;
 	private String birthday;
 	private String gender;
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private List<Comment> comments;
 
 	public Account() {
 
@@ -61,14 +54,6 @@ public class Account {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-	
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
 	}
 
 }
