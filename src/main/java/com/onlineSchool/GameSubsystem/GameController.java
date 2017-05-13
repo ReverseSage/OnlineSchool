@@ -320,3 +320,73 @@ public class GameController {
     
   
 }
+
+ /* Request Edit page to edit some game */
+    @RequestMapping("/Edit")
+	public ModelAndView edit(@RequestParam("gameName")String gameName , ModelAndView mav) {
+    	Game game = gameRepository.findOne(gameName);
+    	mav.setViewName("EditGame");
+		mav.addObject("game", game);
+		return mav;
+	}
+
+    /* apply the changes of editing in the system */
+    @RequestMapping("/Done")
+    String saveNewGame(@RequestParam("game") Game game, @RequestParam("gameName")String gameName)
+    {
+//      if(game.getTeacher().getEmail().equals(email))
+// 	   {
+        Game gam = gameRepository.findOne(gameName);
+        gameRepository.delete(gam);
+        gameRepository.save(game);
+//     }
+		return "redirect:/thome";
+    }
+
+    /* Cancel game selected by a teacher who owns it */
+    @RequestMapping("/Cancel")
+    String cancelGame(@RequestParam("gameName")String gameName)
+    {
+//    if(game.getTeacher().getEmail().equals(email))
+//	   {
+        Game game = gameRepository.findOne(gameName);
+        gameRepository.delete(game);
+//     }
+       return "redirect:/thome";
+    }
+
+    /* Copy game selected by teacher except who owns it */
+    @RequestMapping("/CopyGame")
+    ModelAndView copyGame(@RequestParam("gameName")String gameName ,ModelAndView mav)
+    {
+    	String email = new String();
+    	Game copiedGame = new Game();
+    	Game game = gameRepository.findOne(gameName);
+    	String gamename = new String();
+    	List<Question> questions = game.getQuestions();
+    	List<Question> cQuestions = new ArrayList<Question>();
+    	if(Character.isUpperCase(gameName.charAt(0)))
+    		gamename = gameName.substring(0, 1).toLowerCase() + gameName.substring(1);
+    	else
+    		 {gamename = gameName.substring(0, 1).toUpperCase() + gameName.substring(1);}
+
+    //	if(!game.getTeacher().getEmail().equals(email) && (accountRepository.findOne(email) instanceof Teacher))
+    //	 {
+    	    copiedGame.setGameName(gamename +".");
+    	    copiedGame.setCourse(game.getCourse());
+    	    for(int i = 0 ; i < questions.size() ;i++)
+    	    	{
+    	    	//questions.get(i).setGame(copiedGame);
+    	    	 TrueOrFalse ques = new TrueOrFalse();
+    	    	 ques.setGame(copiedGame);ques.setHeader(questions.get(i).getHeader());
+    	    	 ques.setAnswer(((TrueOrFalse) questions.get(i)).getAnswer());
+    	    	 cQuestions.add(ques);
+    	    	}
+    	    copiedGame.setQuestions(cQuestions);
+   // 		copiedGame.setTeacher((Teacher)accountRepository.findOne(email));
+    		gameRepository.save(copiedGame);
+    //	 }
+    	mav.setViewName("redirect:/thome");
+    	return mav;
+    }
+
