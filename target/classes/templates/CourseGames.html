@@ -55,17 +55,17 @@
 		<div class = "col-md-4 col-ms-12">
 			<div class = "box">
 			 <img class ="crop-img" src="https://lh6.ggpht.com/gbTtTZCKQ49a_xkThokQKwmaaKGCKMNKtIf3bqxhj43UImd-HpSWfzRbza5qszPLuQSk=h1080"/>
-			  <p th:inline = "text" th:value ="${game.gameName}" name = "gamename" onclick ="assign(this)"> [[${game.gameName}]]</p>
+			  <p style="cursor:pointer" th:inline = "text" th:value ="${game.gameName}" name = "gamename" onclick ="assign(this)"> [[${game.gameName}]]</p>
 			</div></div><div style = "border-top: 2px solid white;"></div>
 		</div>
-		<form id="Form" action = "/Game"   style = "display: none;" method = "post" >
+		<form id="Form" action = "/playGame"   style = "display: none;" method = "post" >
 			 <input type = "text" id = "name" name = "gameName"/>
 		</form>
 		</div>
 		
 		<script>
 	function assign(object){
-		document.getElementById("name").value = object.innerHTML /*document.getElementById("courses").innerHTML*/;
+		document.getElementById("name").value = object.innerHTML ;
 		document.getElementById("Form").submit();
 	}
 	</script>

@@ -25,14 +25,14 @@
 	    <input type="date" required = "required" name ="birthday" th:value="${account.birthday}" value="date" />
 	    <br /><br /><br />
 			
-		<select required = "required" id ="Gender" name = "Gender" th:value="${account.gender}">
+		<select required = "required" id = "Gender" name = "Gender" th:value="${account.gender}">
         <option value="male" >Male</option>
         <option value="female">Female</option>
         </select>&nbsp;&nbsp;
 			
 	    <select required = "required" id = "Type"  name = "type" >
-        <option value="teacher" id = "teacher" onclick = "show()"> Teacher </option>
-        <option value="student" id = "student">Student</option>
+        <option value="teacher" > Teacher </option>
+        <option value="student" >Student</option>
        </select>  
 	    <br /><br /><br />
 	    Academic Mail(*teachers):

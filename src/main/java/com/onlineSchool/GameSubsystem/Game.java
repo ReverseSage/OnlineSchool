@@ -43,5 +43,14 @@ public class Game {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	
+	
+	
 
 }

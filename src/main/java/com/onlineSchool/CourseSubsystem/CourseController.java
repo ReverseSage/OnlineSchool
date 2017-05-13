@@ -55,11 +55,9 @@ public class CourseController {
 		List<Game> games = new ArrayList<Game>();
 		
 		for(int i = 0 ; i < courses.size(); i++){
-			 System.out.println(courses.get(i).getCourseName() + " " + courseName + courses.get(i).getGames().size());
 			 String name = courses.get(i).getCourseName();
 		  if((name.equals(courseName)))
 		  {
-			  System.out.println(games.size());
 			  games = courses.get(i).getGames();
 			  break;
 		  }

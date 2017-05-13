@@ -11,6 +11,7 @@ button{
     width:150px;	
     background-color: #3a57af;
     border:none;
+    color: white;
 }
 	
 .crop-img{
@@ -85,16 +86,74 @@ input[type = radio]{
 	padding: 0px;
 }
 
-#Nbutton{
+#Nbutton,input[type = button]{
 	 color:white;
 	  background-color: red;
 	  margin-left:10px;
+	  border: none;
+	  height:60px;
+      width:150px;
 	}
 	
 a:hover{
-	 font-size:15px;
+	/* font-size:15px;*/
 	}
 input[type = number]{
 	 width: 60px;
 	}
+
+.box1{
+    margin: auto;
+	margin-top: 15px;
+    width:600px;
+	text-align: center;
+	font-size: 28px;
+	height: auto;
+	padding:5px;
+	color : white;
+	margin-top:-20px;
+}
+input[type = radio]{
+	font-size:20px;
+}
+.specialCase,.cong{
+	font-size:45px;
+	text-align:center;
+	color:yellow;
+	font-style:italic;
+	font-family: "Tangerine", snapper;
+}
+.cong{
+    top: 45%;
+    position: absolute;
+    margin-right:450px;
+    font-size:32px;
+}
+textarea{
+	font-size:12px;
+	background-color:#98d4f3;
+	color:white;
+	border:none;
+	text-align:left;
+	}
+	
+}
+
+.Prop{
+ font-size:18px;
+ background-color:#FFCD28;	
+ color:white;
+ display: inline-block;
+ width:120px;	
+}
+#Back{
+	
+	background: red;
+	color:white;
+	width:300px;
+	position: center;
+	font-size:28px;
+	border-radius: 30px;
+	margin-top:307px;
+	margin-left:-50px;
 }
